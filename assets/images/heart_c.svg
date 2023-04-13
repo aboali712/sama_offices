@@ -1,0 +1,8 @@
+<svg id="heart" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <path id="Vector" d="M0,0H24V24H0Z" fill="none" opacity="0"/>
+  <g id="Group_15201" data-name="Group 15201" transform="translate(-229.956 -58.754)">
+    <line id="Line_405" data-name="Line 405" x2="18" transform="translate(232.956 64.754)" fill="none" stroke="#a0a3b1" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_406" data-name="Line 406" x2="18" transform="translate(232.956 70.754)" fill="none" stroke="#a0a3b1" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_407" data-name="Line 407" x2="9" transform="translate(241.956 76.754)" fill="none" stroke="#a0a3b1" stroke-linecap="round" stroke-width="1"/>
+  </g>
+</svg>

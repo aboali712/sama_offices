@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47">
+    <g id="Group_1779" data-name="Group 1779" transform="translate(-298 -451)">
+        <rect id="Rectangle_1813" data-name="Rectangle 1813" width="47" height="47" rx="9" transform="translate(298 451)" fill="#e9f0ff"/>
+        <g id="airplane_1_" data-name="airplane (1)" transform="translate(264.501 463)">
+            <path id="Path_3604" data-name="Path 3604" d="M292.61,0A4.115,4.115,0,0,0,288.5,4.111h0V6.727a4.111,4.111,0,1,0,8.221,0V4.111A4.115,4.115,0,0,0,292.61,0Zm0,1.4a2.714,2.714,0,0,1,2.617,2.009h-5.234A2.714,2.714,0,0,1,292.61,1.4Zm0,8.035A2.712,2.712,0,0,1,289.9,6.727V4.811h5.419V6.727A2.712,2.712,0,0,1,292.61,9.436Z" transform="translate(-229.742)" fill="#005eaa"/>
+            <path id="Path_3605" data-name="Path 3605" d="M58.453,110.566H52.5V103a2.5,2.5,0,1,0-5,0v10.464a2.1,2.1,0,0,0,2.1,2.1h1.822v2.756h-.7a.7.7,0,1,0,0,1.4h6.54a.7.7,0,1,0,0-1.4h-.7v-2.756h3.69a.7.7,0,0,0,.7-.7v-1.8A2.5,2.5,0,0,0,58.453,110.566ZM55.16,118.32H52.824v-2.756H55.16Zm4.391-4.157H49.6a.7.7,0,0,1-.7-.7V103a1.1,1.1,0,1,1,2.2,0v8.268a.7.7,0,0,0,.7.7h6.657a1.1,1.1,0,0,1,1.1,1.1Z" transform="translate(0 -95.804)" fill="#005eaa"/>
+        </g>
+    </g>
+</svg>

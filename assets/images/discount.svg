@@ -1,0 +1,9 @@
+<svg id="ticket-discount" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="ticket-discount-2"  transform="translate(-748 -572)">
+    <path id="Vector" d="M17.5,8.5A2.5,2.5,0,0,1,20,6V5c0-4-1-5-5-5H5C1,0,0,1,0,5v.5A2.5,2.5,0,0,1,2.5,8,2.5,2.5,0,0,1,0,10.5V11c0,4,1,5,5,5H15c4,0,5-1,5-5A2.5,2.5,0,0,1,17.5,8.5Z" transform="translate(750 576)" fill="none" stroke="#a0a3b1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="Vector-2"  d="M0,6,6,0" transform="translate(757 580.75)" fill="none" stroke="#a0a3b1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="Vector-3"  d="M.495.5H.5" transform="translate(762.5 586.25)" fill="none" stroke="#a0a3b1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Vector-4"  d="M.495.5H.5" transform="translate(756.5 580.75)" fill="none" stroke="#a0a3b1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Vector-5"  d="M0,0H24V24H0Z" transform="translate(748 572)" fill="none" opacity="0"/>
+  </g>
+</svg>
