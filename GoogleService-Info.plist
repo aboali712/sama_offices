@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1080211136484-jij128pm9q4v21dsh7befdi0qmpb5ab7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1080211136484-jij128pm9q4v21dsh7befdi0qmpb5ab7</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1080211136484-9o0loifs128v9ghijvp4uvnh60nhijpu.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDKmQluj5fuvDX6j-3r1eLra1soqz_5TzE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1080211136484</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.sama.offices</string>
+	<key>PROJECT_ID</key>
+	<string>sama2022-ef091</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sama2022-ef091.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1080211136484:ios:c80f6c3b673664705bb1f1</string>
+	<key>DATABASE_URL</key>
+	<string>https://sama2022-ef091-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
