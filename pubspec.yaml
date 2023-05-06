@@ -80,6 +80,7 @@ dependencies:
   html_editor_enhanced: ^2.5.1
   toggle_switch: ^2.1.0
   flutter_launcher_icons: ^0.13.1
+  notification_permissions: ^0.6.1
 
 dev_dependencies:
   flutter_test:
@@ -95,7 +96,7 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 flutter_icons:
-  android: "launcher_icon"
+  android: true
   ios: true
   image_path: "assets/images/applogo.png"
   adaptive_icon_background: "assets/images/applogo.png"

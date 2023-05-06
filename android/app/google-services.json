@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "1080211136484",
+    "firebase_url": "https://sama2022-ef091-default-rtdb.firebaseio.com",
+    "project_id": "sama2022-ef091",
+    "storage_bucket": "sama2022-ef091.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080211136484:android:ab3e04483de715bd5bb1f1",
+        "android_client_info": {
+          "package_name": "com.emp.sama"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1080211136484-cboucsok6vrjkfjcsnnpiko7lpl749jb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.emp.sama",
+            "certificate_hash": "fceda555e3474ed42463f1f00b7e9f8d5999fcfe"
+          }
+        },
+        {
+          "client_id": "1080211136484-m3jmt2m6r3qvoslftlbvhs8kkhiplchu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.emp.sama",
+            "certificate_hash": "db7f449f309a1349e9494f43fe684ba0a4dfa934"
+          }
+        },
+        {
+          "client_id": "1080211136484-em90os71epafanef4t371nkj57pc4rs2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMRDsZlPibMLpqg7woKaiECJ2bKWSfsj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080211136484-em90os71epafanef4t371nkj57pc4rs2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1080211136484-6ma9gq1e2e9ctegjgmd9ek3vbplngthf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.emp.sama"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080211136484:android:6153cf3a116176db5bb1f1",
+        "android_client_info": {
+          "package_name": "com.sama.offices"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1080211136484-em90os71epafanef4t371nkj57pc4rs2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMRDsZlPibMLpqg7woKaiECJ2bKWSfsj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080211136484-em90os71epafanef4t371nkj57pc4rs2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1080211136484-6ma9gq1e2e9ctegjgmd9ek3vbplngthf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.emp.sama"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,12 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sama_offices">
+    package="com.sama.offices">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:label="sama_offices"
+        android:label="sama offices"
         android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon">
+        android:icon="@mipmap/ic_launcher">
        <!-- Add your api key here -->
        <meta-data android:name="com.google.android.geo.API_KEY"
            android:value="AIzaSyBeAsv9F4ONue2XY9a6redv-o6rKxLuBGc"/>

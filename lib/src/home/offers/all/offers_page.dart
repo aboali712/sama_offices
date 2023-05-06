@@ -27,7 +27,7 @@ class _OffersPageState extends OffersPageViewModel {
     Size size = MediaQuery.of(context).size;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: Colors.white,
+        statusBarColor: yellowColor,
         /* set Status bar color in Android devices. */
         statusBarIconBrightness: Brightness.dark,
         /* set Status bar icons color in Android devices.*/

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
+import 'package:sama_offices/core/values/colors.dart';
 import 'package:sama_offices/src/home/more/more_page_screen.dart';
 import 'package:sama_offices/src/home/offer_books/reservation_offers_view.dart';
 import 'package:sama_offices/src/home/offers/all/offers_page.dart';
@@ -35,7 +36,7 @@ class HomeCorePage extends State<HomeCore> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-            statusBarColor: Colors.white,
+            statusBarColor: yellowColor,
             /* set Status bar color in Android devices. */
             statusBarIconBrightness: Brightness.dark,
             /* set Status bar icons color in Android devices.*/

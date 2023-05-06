@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:notification_permissions/notification_permissions.dart';
 import 'package:sama_offices/src/start/splash/splash.dart';
 
 
@@ -70,6 +71,9 @@ class _PushNotificationTestState extends State<SamaOfficesApp> {
             context: context);
       }
     });
+    NotificationPermissions.requestNotificationPermissions(
+        iosSettings: const NotificationSettingsIos(
+            sound: true, badge: true, alert: true));
 
     getTokenDevice();
   }
