@@ -71,7 +71,7 @@
   "First Name": "First Name",
   "Second Name": "Second Name",
   "E-mail": "E-mail",
-  "I agree": "I agree",
+  "IAgree": "I agree",
   "Terms and Conditions": "Terms and Conditions",
   "You already have an account": "You already have an account",
   "EnterFirstName": "Enter first name",
@@ -228,4 +228,7 @@
   "Subject": "Subject",
   "yourInquiry": "Your Inquiry",
   "Send": "Send"
+
+
+
 }

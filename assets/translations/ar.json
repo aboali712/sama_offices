@@ -70,7 +70,7 @@
   "First Name": "الأسم الأول",
   "Second Name": "الأسم الثانى",
   "E-mail": "البريد الألكترونى",
-  "I agree": "أوفق على",
+  "IAgree": "أوافق على",
   "PleaseLogin": "من فضلك قم بعمل تسجيل دخول او انشاء حساب اولا ",
   "Terms and Conditions": "الشروط والأحكام",
   "You already have an account": "لديك حساب بالفعل",
@@ -227,5 +227,5 @@
   "OrGetTouch": "او قم بالتواصل معنا بإرسال  استفسارك ",
   "Subject": "الموضوع",
   "yourInquiry": "استفسارك",
-  "Send": "ارسال"
+  "Send": "ارسال",
 }

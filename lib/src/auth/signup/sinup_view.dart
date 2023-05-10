@@ -12,9 +12,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sama_offices/src/auth/signup/signup_view_model.dart';
 
 
+import '../../../app.dart';
 import '../../../core/utils/input_validators.dart';
 import '../../../core/values/colors.dart';
 import '../../../core/widget/phone_number_widget.dart';
+import '../../home/more/about_us/about_us_view.dart';
+import '../../home/more/more_view_model_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -1389,6 +1392,62 @@ class _SignUpPageState extends SignUpViewModel {
             const SizedBox(
               height: 20,
             ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Checkbox(activeColor: samaColor,
+                  value: terms,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      terms = value!;
+                    });
+                  },
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                 Text(
+                  tr("IAgree"),
+                  style: const TextStyle(
+                    fontFamily: "Tajawal",
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                InkWell(
+                  onTap: () {
+                    MoreViewModelPage.typePage = "3";
+
+                    SamaOfficesApp.navKey.currentState!.push(
+                        MaterialPageRoute(
+                            builder: (context) =>
+                            const AboutUs()));
+
+                  },
+                  child:  Text(
+                    tr("Terms and Conditions"),
+                    style: const TextStyle(
+                        fontFamily: "Tajawal",
+                        decoration: TextDecoration.underline,
+                        decorationThickness: 20,
+
+                        fontSize:14,
+                        fontWeight: FontWeight.bold,
+                        color: samaColor),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(
+              height: 10,
+            ),
+
+
           ],
         ),
       ),

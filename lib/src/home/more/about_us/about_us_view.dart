@@ -44,7 +44,10 @@ class _AboutUsState extends AboutUsViewModel {
                   MoreViewModelPage.typePage == "0"
                       ? tr("AboutUs")
                       : MoreViewModelPage.typePage == "2"
+
                           ? tr("Privacy")
+                  : MoreViewModelPage.typePage == "3"
+                  ? tr("UsageInstructions")
                           : tr("UsageInstructions"),
                   style: GoogleFonts.tajawal(
                       fontWeight: FontWeight.bold,  fontSize: Platform.isIOS ? 18 : 15)),
@@ -67,6 +70,8 @@ class _AboutUsState extends AboutUsViewModel {
                           ? "assets/images/about.png"
                           : MoreViewModelPage.typePage == "2"
                               ? "assets/images/privacy.png"
+                     :  MoreViewModelPage.typePage == "3"
+                          ? "assets/images/terms.png"
                               : "assets/images/terms.png",
                       width: 200,
                       height: 200,
@@ -84,6 +89,8 @@ class _AboutUsState extends AboutUsViewModel {
                             ? MoreViewModelPage.settingsModel!.about!
                             : MoreViewModelPage.typePage == "2"
                                 ? MoreViewModelPage.settingsModel!.privacy!
+                            : MoreViewModelPage.typePage == "3"
+                            ? MoreViewModelPage.settingsModel!.office_terms!
                                 : MoreViewModelPage.settingsModel!.terms!,
                         customTextAlign: (_) => TextAlign.start,
                       ),

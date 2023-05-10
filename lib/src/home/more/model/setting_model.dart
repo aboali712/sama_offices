@@ -18,6 +18,7 @@ class SettingsModel {
   String? googlePixel;
   String? snapchatPixel;
   String? tiktokPixel;
+  String? office_terms ;
 
   SettingsModel(
       {this.id,
@@ -38,7 +39,9 @@ class SettingsModel {
         this.twitterPixel,
         this.googlePixel,
         this.snapchatPixel,
-        this.tiktokPixel});
+        this.tiktokPixel,
+      this. office_terms
+      });
 
   SettingsModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -60,6 +63,8 @@ class SettingsModel {
     googlePixel = json['google_pixel'];
     snapchatPixel = json['snapchat_pixel'];
     tiktokPixel = json['tiktok_pixel'];
+    office_terms = json['office_terms'];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -83,6 +88,8 @@ class SettingsModel {
     data['google_pixel'] = this.googlePixel;
     data['snapchat_pixel'] = this.snapchatPixel;
     data['tiktok_pixel'] = this.tiktokPixel;
+    data['office_terms'] = this.office_terms;
+
     return data;
   }
 }

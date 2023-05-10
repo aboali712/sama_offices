@@ -11,6 +11,8 @@ import 'package:place_picker/widgets/place_picker.dart';
 import 'package:sama_offices/src/auth/signup/all_filter/cities_model.dart';
 import 'package:sama_offices/src/auth/signup/all_filter/service_model.dart';
 import 'package:sama_offices/src/auth/signup/sinup_view.dart';
+import 'package:sama_offices/src/home/more/more_page_screen.dart';
+import 'package:sama_offices/src/home/more/more_view_model_page.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../../app.dart';
@@ -18,6 +20,7 @@ import '../../../core/network/network_service.dart';
 import '../../../core/utils/helper_manager.dart';
 import '../../../core/widget/phone_number_widget.dart';
 import '../../../main.dart';
+import '../../home/more/model/SettingsResponse.dart';
 import '../auth_model/empty_response.dart';
 import '../verify_code/verify_code_view.dart';
 import '../verify_code/verify_code_view_model.dart';
@@ -119,7 +122,7 @@ abstract class SignUpViewModel extends State<SignUpPage>{
   @override
   void initState() {
     getFilterDataApi();
-    getCityDataApi();
+    getSettingsDataApi();
     super.initState();
   }
 
@@ -191,14 +194,34 @@ abstract class SignUpViewModel extends State<SignUpPage>{
       toastApp(tr("ChooseTheSubscriptionPlan"),context);
       return false;
     }
-
+    if (terms == false) {
+      toastApp(tr("ChooseTermsAndConditions"),context);
+      return false;
+    }
 
 
 
     return true;
   }
 
-  
+
+  Future<void> getSettingsDataApi() async {
+
+
+
+    final response = await dio.get("v1/settings");
+
+    var rs = SettingsResponse(response.data!);
+    if (rs.status == 200) {
+      setState(() {
+       MoreViewModelPage. settingsModel = rs.data;
+
+
+
+      });
+    }
+
+  }
   Future<void> registerCallApi() async {
 
 
