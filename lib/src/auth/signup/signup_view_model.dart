@@ -228,12 +228,12 @@ abstract class SignUpViewModel extends State<SignUpPage>{
 
 
 
-    var ph="";
+    var ph=phoneNumber;
     if (ph.startsWith("0")) {
       ph = phoneNumber.substring(1);
     }
 
-    ph = PhoneNumberSignUpWidgetState.codePhone + phoneNumber;
+    ph = PhoneNumberSignUpWidgetState.codePhone + ph;
 
     //+201030025254
     setState(() {

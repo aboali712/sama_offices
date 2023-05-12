@@ -29,7 +29,7 @@ class SplashViewState extends State<SplashView> with StorageHelper {
 
   Future<void> controlToApp() async {
     await readAuthManager.fetchUserIsFirst();
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 3));
 
     if (readAuthManager.isFirst == false) {
       if(readAuthManager.isLogin){

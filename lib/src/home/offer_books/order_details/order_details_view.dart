@@ -132,7 +132,7 @@ class _OrderDetailsState extends OrderOfferDetailsViewModel {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      "${tr("OrderDate")} : ${DateFormat('MMM d, yyyy ').format(DateFormat('yyyy-MM-dd').parse(bookingsModelDetails.createdAt!))} ",
+                                      "${tr("OrderDate")} : ${DateFormat('MMM d, yyyy',"en").format(DateFormat('yyyy-MM-dd',"en").parse(bookingsModelDetails.createdAt!))} ",
                                       style: GoogleFonts.tajawal(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 13,

@@ -50,12 +50,12 @@ abstract class LoginViewModel extends State<LoginPage> with StorageHelper{
         isLoading=true;
       });
 
-      var ph = "";
+      var ph = phoneNumber;
       if (ph.startsWith("0")) {
         ph = phoneNumber.substring(1);
       }
 
-      ph = PhoneNumberSignUpWidgetState.codePhone + phoneNumber;
+      ph = PhoneNumberSignUpWidgetState.codePhone + ph;
 
 
 

@@ -38,7 +38,8 @@ abstract class MoreViewModelPage  extends State<MorePageScreen> with StorageHelp
   }
 
   void logoutApp(){
-    saveToken("").then((value) => {
+    saveToken("").then((value) async => {
+      await Future.delayed(const Duration(seconds: 1)),
       SamaOfficesApp.navKey.currentState!.push(
           MaterialPageRoute(
               builder: (context) =>
