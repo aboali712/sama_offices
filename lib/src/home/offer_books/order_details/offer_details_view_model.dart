@@ -13,7 +13,7 @@ abstract class OrderOfferDetailsViewModel extends State<OrderOfferDetails> with 
    BookingsModel bookingsModelDetails=BookingsModel();
   static BookingsModel bookingsModel=BookingsModel();
    int select=1;
-   List listStatues= [tr("Pending"),tr("Accepted"),tr("Reviewing"),tr("Processing"),tr("Completed"),tr("Cancelled") ];
+   List listStatues= [tr("Pending"),tr("Reviewing"),tr("Accepted"),tr("Processing"),tr("Completed"),tr("Cancelled") ];
    String selectStatus="";
    bool isLoading=false;
 
@@ -38,7 +38,7 @@ abstract class OrderOfferDetailsViewModel extends State<OrderOfferDetails> with 
      mp["reservation_id"]=bookingsModelDetails.id.toString();
      var st = selectStatus==tr("Pending") ? "pending"   : selectStatus== tr("Accepted")? "accepted"
          :  selectStatus== tr("Reviewing") ? "inReview"  : selectStatus== tr("Processing")?"processing"
-         :  selectStatus== tr("Completed")?"completed"  :  tr("Cancelled");
+         :  selectStatus== tr("Completed")?"completed"  :  "canceled";
      mp["status"] = st;
      final response =
      await dio.post("v1/office/changeStatus", data: mp);

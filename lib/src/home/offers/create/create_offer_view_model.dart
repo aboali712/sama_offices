@@ -136,6 +136,8 @@ abstract class CreateOfferPageViewModel extends  State<CreateOfferPage>   with S
       mp["description_ar"]=detailsAr;
       mp["description_en"]=detailsEn;
       mp["country_id"]=countryId;
+      mp["is_vip"]="0";
+
       mp["city_id"]=selectedCityBranchID;
       mp["price_after"]=priceAfterController.value.text.toString();;
       mp["price_before"]=priceBeforeController.value.text.toString();;

@@ -7,6 +7,7 @@ import 'package:sama_offices/src/home/resevition/reservation_view_model.dart';
 
 import '../../../app.dart';
 import '../../../core/values/colors.dart';
+import '../notifcation_page.dart';
 import 'order_details/order_details_view.dart';
 import 'order_details/order_details_view_model.dart';
 
@@ -36,12 +37,56 @@ class _ReservationPageState extends ReservationsViewModel {
             alignment: AlignmentDirectional.topCenter,
             padding: const EdgeInsets.only(top: 60),
             width: MediaQuery.of(context).size.width,
-            child: Text(
-              tr("ServiceRequests"),
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(width: 49,),
+                Text(
+                  tr("ServiceRequests"),
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500),
+                ),
+                InkWell(
+                    onTap: () => {
+                      SamaOfficesApp.navKey.currentState!.push(
+                        MaterialPageRoute(
+                            builder: (context) =>
+                            const NotificationPage()),
+                      )
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                            padding: const EdgeInsets.all(10),
+                            height: 46,
+                            width: 46,
+                            child:const Icon(Icons.notifications_none,color: Colors.white,)
+                        ),
+                        Positioned(
+                          right: 2,
+                          child: Container(
+                            height: 20,
+                            width: 20,
+                            decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: Colors.red, width: 2)),
+                            child: const Center(
+                                child: Text(
+                                  "0",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 10),
+                                )
+
+                            ),
+                          ),
+                        )
+                      ],
+                    )),
+
+              ],
             ),
           ),
           Container(

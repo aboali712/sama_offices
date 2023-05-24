@@ -194,6 +194,7 @@ abstract class UpdateOfferPageViewModel extends State<UpdateOfferPage>
       mp["country_id"] = countryId;
       mp["city_id"] = selectedCityBranchID;
       mp["price_after"] = priceAfterController.value.text.toString();
+      mp["is_vip"]="0";
 
       mp["price_before"] = priceBeforeController.value.text.toString();
 

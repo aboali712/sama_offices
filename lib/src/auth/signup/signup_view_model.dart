@@ -275,7 +275,7 @@ abstract class SignUpViewModel extends State<SignUpPage>{
 
 
 
-
+await Future.delayed(const Duration(seconds: 2));
 
 
 

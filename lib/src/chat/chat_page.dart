@@ -86,7 +86,9 @@ class ChatPageState extends State<ChatPage> {
     }
   }
   Future<void> callApiBackend(MessageModel2 messageModel2) async {
-    final response = await dio.post( "/api/sendMessage", data:FormData.fromMap(messageModel2.toJson()) );
+    Map<String,String> headers = {'Content-Type':'application/json'};
+
+    final response = await dio.post( "v1/sendMessage",options: Options(headers: headers), data:messageModel2 );
 
   }
 

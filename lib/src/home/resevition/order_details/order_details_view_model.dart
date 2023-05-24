@@ -38,7 +38,7 @@ abstract class OrderDetailsViewModel extends State<OrderDetails> with StorageHel
      mp["reservation_id"]=bookingsModelDetails.id.toString();
      var st = selectStatus==tr("Pending") ? "pending"   : selectStatus== tr("Accepted")? "accepted"
          :  selectStatus== tr("Reviewing") ? "inReview"  : selectStatus== tr("Processing")?"processing"
-         :  selectStatus== tr("Completed")?"completed"  :  tr("Cancelled");
+         :  selectStatus== tr("Completed")?"completed"  :  "canceled";
      mp["status"] = st;
      final response =
      await dio.post("v1/office/changeStatus", data: mp);
