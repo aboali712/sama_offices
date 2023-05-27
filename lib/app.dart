@@ -76,7 +76,10 @@ class _PushNotificationTestState extends State<SamaOfficesApp> {
             sound: true, badge: true, alert: true));
 
     getTokenDevice();
+
   }
+
+
 
   @override
   Widget build(BuildContext context) {

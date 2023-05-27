@@ -201,7 +201,7 @@ abstract class MoreViewModelPage  extends State<MorePageScreen> with StorageHelp
                       await context.setLocale(Locale(lang.value));
                       await saveLang(lang.value);
                       SamaOfficesApp.navKey.currentState!.pushReplacement(
-                        MaterialPageRoute(builder: (context) => const HomeCore()),
+                        MaterialPageRoute(builder: (context) =>  HomeCore()),
                       );
                     },
                     child:  Text(

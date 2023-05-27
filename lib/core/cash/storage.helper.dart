@@ -23,6 +23,19 @@ class StorageHelper {
     return ln;
   }
 
+  Future<bool> saveDeviceToken(String token) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(CacheManagerKey.tokenDevice.toString(), token);
+    return true;
+  }
+
+  Future<String?> getDeviceToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? ln = prefs.getString(CacheManagerKey.tokenDevice.toString());
+    ln ??= "";
+    return ln;
+  }
+
   Future<bool> setFirst(bool first) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool(CacheManagerKey.isFirst.toString(), first);
@@ -70,4 +83,4 @@ class StorageHelper {
 
 }
 
-enum CacheManagerKey { token, isFirst, lang, currency, user, fave,cart,userApple }
+enum CacheManagerKey { tokenDevice,token, isFirst, lang, currency, user, fave,cart,userApple }

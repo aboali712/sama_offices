@@ -52,205 +52,209 @@ class _OffersPageState extends OffersPageViewModel {
                 ),
               ),
               offerPageModel!=null
-           ?   SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  children: offerPageModel!
-                      .map((offer) => InkWell(
-                    onTap: () {
-                      UpdateOfferPageViewModel.offerModel = offer;
+           ?   Expanded(
+             child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: offerPageModel!
+                        .map((offer) => InkWell(
+                      onTap: () {
+                        UpdateOfferPageViewModel.offerModel = offer;
 
-                      OfferDetailsViewModel.offerId =
-                          offer.id.toString();
-                      SamaOfficesApp.navKey.currentState!.push(
-                        MaterialPageRoute(
-                            builder: (context) =>
-                            const OfferDetailsPage()),
-                     );
-                    },
-                    child: Card(
-                      elevation: .5,
-                      child: Container(
-                        width: size.width,
-                        margin: const EdgeInsets.all(5),
-                        child: Column(
-                          children: [
-                            Stack(
-                              children: [
-                                ClipRRect(
-                                  child: CachedNetworkImage(
-                                    imageUrl: offer.image!,
-                                    width: size.width,
-                                    height: 200,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                  const EdgeInsets.all(
-                                      4.0),
-                                  child: SizedBox(
-                                    width:
-                                    (size.width) - 10,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment
-                                          .spaceBetween,
-                                      children: [
-
-                                        Container(
-                                          padding:
-                                          const EdgeInsets
-                                              .all(5),
-                                          decoration: BoxDecoration(
-                                              color:
-                                              yellowColor,
-                                              borderRadius:
-                                              BorderRadius
-                                                  .circular(
-                                                  8)),
-                                          child: Center(
-                                            child: Text(
-                                              offer.numOfDays! >
-                                                  10
-                                                  ? "${offer.numOfDays!} ${tr("Day")}"
-                                                  : "${offer.numOfDays!} ${tr("Days")}",
-                                              style: const TextStyle(
-                                                  fontSize:
-                                                  13,
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .bold,
-                                                  color: Colors
-                                                      .black),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                        OfferDetailsViewModel.offerId =
+                            offer.id.toString();
+                        SamaOfficesApp.navKey.currentState!.push(
+                          MaterialPageRoute(
+                              builder: (context) =>
+                              const OfferDetailsPage()),
+                       );
+                      },
+                      child: Card(
+                        elevation: .5,
+                        child: Container(
+                          width: size.width,
+                          margin: const EdgeInsets.all(5),
+                          child: Column(
+                            children: [
+                              Stack(
+                                children: [
+                                  ClipRRect(
+                                    child: CachedNetworkImage(
+                                      imageUrl: offer.image!,
+                                      width: size.width,
+                                      height: 200,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Align(
-                              alignment:
-                              AlignmentDirectional
-                                  .topStart,
-                              child: Text(
-                                offer.name!,
-                                style: const TextStyle(
-                                    fontSize: 13,
-                                    fontWeight:
-                                    FontWeight.w600,
-                                    color: Colors.black),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment
-                                  .spaceBetween,
-                              children: [
-                                Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment
-                                        .end,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment
-                                        .center,
-                                    children: [
-                                      SizedBox(
-                                        height: 20,
-                                        child: Text(
-                                          "${offer.priceAfter!} ${tr("SAR")} ",
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight:
-                                              FontWeight
-                                                  .w600,
-                                              color: Colors
-                                                  .cyan),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 25,
-                                        child: RichText(
-                                            text: TextSpan(
-                                                text: ' ',
-                                                children: <
-                                                    TextSpan>[
-                                                  TextSpan(
-                                                    text:
-                                                    "${offer.priceBefore!} ${tr("SAR")} ",
-                                                    style:
-                                                    const TextStyle(
-                                                      color: Colors
-                                                          .black54,
-                                                      fontSize:
-                                                      14,
-                                                      decoration:
-                                                      TextDecoration
-                                                          .lineThrough,
-                                                    ),
-                                                  )
-                                                ])),
-                                      )
-                                    ]),
-                                TextButton(
-                                  style:
-                                  TextButton.styleFrom(
-                                      fixedSize:
-                                      const Size(
-                                          140, 40),
-                                      shape:
-                                      RoundedRectangleBorder(
-                                        side: const BorderSide(
-                                            color: Colors
-                                                .grey),
-                                        borderRadius:
-                                        BorderRadius
-                                            .circular(
-                                            10),
-                                      ),
-                                      backgroundColor:
-                                      Colors
-                                          .transparent),
-                                  onPressed: () {
-                                    UpdateOfferPageViewModel.offerModel = offer;
+                                  Padding(
+                                    padding:
+                                    const EdgeInsets.all(
+                                        4.0),
+                                    child: SizedBox(
+                                      width:
+                                      (size.width) - 10,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment
+                                            .spaceBetween,
+                                        children: [
 
-                                    OfferDetailsViewModel.offerId =
-                                        offer.id.toString();
-                                    SamaOfficesApp.navKey.currentState!.push(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                          const OfferDetailsPage()),
-                                    );
-                                  },
-                                  child: Text(
-                                    tr("MoreInfo"),
-                                    style: const TextStyle(
-                                        color: samaColor,
-                                        fontWeight:
-                                        FontWeight.bold,
-                                        fontSize: 12),
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
+                                          Container(
+                                            padding:
+                                            const EdgeInsets
+                                                .all(5),
+                                            decoration: BoxDecoration(
+                                                color:
+                                                yellowColor,
+                                                borderRadius:
+                                                BorderRadius
+                                                    .circular(
+                                                    8)),
+                                            child: Center(
+                                              child: Text(
+                                                offer.numOfDays! >
+                                                    10
+                                                    ? "${offer.numOfDays!} ${tr("Day")}"
+                                                    : "${offer.numOfDays!} ${tr("Days")}",
+                                                style: const TextStyle(
+                                                    fontSize:
+                                                    13,
+                                                    fontWeight:
+                                                    FontWeight
+                                                        .bold,
+                                                    color: Colors
+                                                        .black),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Align(
+                                alignment:
+                                AlignmentDirectional
+                                    .topStart,
+                                child: Text(
+                                  offer.name!,
+                                  style: const TextStyle(
+                                      fontSize: 13,
+                                      fontWeight:
+                                      FontWeight.w600,
+                                      color: Colors.black),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment
+                                    .spaceBetween,
+                                children: [
+                                  Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment
+                                          .end,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment
+                                          .center,
+                                      children: [
+                                        SizedBox(
+                                          height: 20,
+                                          child: Text(
+                                            "${offer.priceAfter!} ${tr("SAR")} ",
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight:
+                                                FontWeight
+                                                    .w600,
+                                                color: Colors
+                                                    .cyan),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 25,
+                                          child: RichText(
+                                              text: TextSpan(
+                                                  text: ' ',
+                                                  children: <
+                                                      TextSpan>[
+                                                    TextSpan(
+                                                      text:
+                                                      "${offer.priceBefore!} ${tr("SAR")} ",
+                                                      style:
+                                                      const TextStyle(
+                                                        color: Colors
+                                                            .black54,
+                                                        fontSize:
+                                                        14,
+                                                        decoration:
+                                                        TextDecoration
+                                                            .lineThrough,
+                                                      ),
+                                                    )
+                                                  ])),
+                                        )
+                                      ]),
+                                  TextButton(
+                                    style:
+                                    TextButton.styleFrom(
+                                        fixedSize:
+                                        const Size(
+                                            140, 40),
+                                        shape:
+                                        RoundedRectangleBorder(
+                                          side: const BorderSide(
+                                              color: Colors
+                                                  .grey),
+                                          borderRadius:
+                                          BorderRadius
+                                              .circular(
+                                              10),
+                                        ),
+                                        backgroundColor:
+                                        Colors
+                                            .transparent),
+                                    onPressed: () {
+                                      UpdateOfferPageViewModel.offerModel = offer;
+
+                                      OfferDetailsViewModel.offerId =
+                                          offer.id.toString();
+                                      SamaOfficesApp.navKey.currentState!.push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                            const OfferDetailsPage()),
+                                      );
+                                    },
+                                    child: Text(
+                                      tr("MoreInfo"),
+                                      style: const TextStyle(
+                                          color: samaColor,
+                                          fontWeight:
+                                          FontWeight.bold,
+                                          fontSize: 12),
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ))
-                      .toList(),
+                    ))
+                        .toList(),
+                  ),
                 ),
-              )
+           )
               : const SizedBox.shrink(),
+
+              const SizedBox(height: 100,),
             ],
           ),
 

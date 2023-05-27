@@ -32,12 +32,12 @@ abstract class ForgetPasswordViewModel extends State<ForgetPassword>
 
   Future<void> checkForgetPassword() async {
     if (checkValidationForgetPassword()) {
-      var ph="";
+      var ph=phoneNumber;
       if (ph.startsWith("0")) {
         ph = phoneNumber.substring(1);
       }
 
-      ph = PhoneNumberSignUpWidgetState.codePhone + phoneNumber;
+      ph = PhoneNumberSignUpWidgetState.codePhone + ph;
       setState(() {
         isloading = true;
       });

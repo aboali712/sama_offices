@@ -3,11 +3,14 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:place_picker/entities/location_result.dart';
 import 'package:place_picker/widgets/place_picker.dart';
+import 'package:sama_offices/core/cash/storage.helper.dart';
 import 'package:sama_offices/src/auth/signup/all_filter/cities_model.dart';
 import 'package:sama_offices/src/auth/signup/all_filter/service_model.dart';
 import 'package:sama_offices/src/auth/signup/sinup_view.dart';
@@ -19,7 +22,6 @@ import '../../../app.dart';
 import '../../../core/network/network_service.dart';
 import '../../../core/utils/helper_manager.dart';
 import '../../../core/widget/phone_number_widget.dart';
-import '../../../main.dart';
 import '../../home/more/model/SettingsResponse.dart';
 import '../auth_model/empty_response.dart';
 import '../verify_code/verify_code_view.dart';
@@ -27,12 +29,10 @@ import '../verify_code/verify_code_view_model.dart';
 import 'all_filter/city_response.dart';
 import 'all_filter/filter_model.dart';
 import 'all_filter/filter_response.dart';
-import 'package:http/http.dart' as http;
-
-import 'package:http_parser/http_parser.dart';
 
 
-abstract class SignUpViewModel extends State<SignUpPage>{
+
+abstract class SignUpViewModel extends State<SignUpPage> with StorageHelper{
 
   bool isLoading = false;
   bool isPhone = false;
@@ -104,6 +104,8 @@ abstract class SignUpViewModel extends State<SignUpPage>{
   XFile? imageCommercial;
 
 
+  String tokenDevice="";
+
 
 
 
@@ -123,6 +125,8 @@ abstract class SignUpViewModel extends State<SignUpPage>{
   void initState() {
     getFilterDataApi();
     getSettingsDataApi();
+    getDeviceToken().then((value) => setState((){tokenDevice=value!;}));
+
     super.initState();
   }
 
@@ -240,6 +244,7 @@ abstract class SignUpViewModel extends State<SignUpPage>{
       isLoading=true;
     });
 
+    tokenDevice=(await FirebaseMessaging.instance.getToken())!;
 
 
     String imageOfficeName = imageOffice!.path.split('/').last;
@@ -286,6 +291,7 @@ await Future.delayed(const Duration(seconds: 2));
     if(response.status==201){
       VerifyCodeViewModel.phone=ph;
       VerifyCodeViewModel.pageType="0";
+
       toastAppSuccess(response.msg!,context);
       SamaOfficesApp.navKey.currentState!.pushReplacement(
         MaterialPageRoute(builder: (context) => const VrifyCode()),
@@ -339,7 +345,6 @@ await Future.delayed(const Duration(seconds: 2));
     }
 
   }
-
 
 
 

@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
+import 'package:sama_offices/core/cash/storage.helper.dart';
 import 'package:sama_offices/core/values/colors.dart';
 import 'package:sama_offices/src/home/more/more_page_screen.dart';
 import 'package:sama_offices/src/home/offer_books/reservation_offers_view.dart';
@@ -16,22 +18,43 @@ import '../../core/widget/bottom_menu.dart';
 class HomeCore extends StatefulWidget {
   static var model;
   static String type = "0";
-  const HomeCore({Key? key}) : super(key: key);
   static LocationData? locationData;
+  static DatabaseReference? starCountRef;
+  static String count1="0";
+  static String count2="0";
+
 
   static String charityID = "";
   static String typeCate = "0";
   static ValueNotifier<int> counter = ValueNotifier<int>(0);
 
 
-
   @override
   HomeCorePage createState() => HomeCorePage();
 }
 
-class HomeCorePage extends State<HomeCore> {
+class HomeCorePage extends State<HomeCore> with StorageHelper {
   static int index = 0;
   static var bottomWidgetKey=GlobalKey<State<BottomNavigationBar>>();
+
+  @override
+  void initState() {
+    getUser().then((user) => {
+        HomeCore.starCountRef =
+    FirebaseDatabase.instance.ref('offices/${user!.office!.id!.toString()}'),
+        HomeCore.starCountRef!.onValue.listen((DatabaseEvent event) {
+          setState(() {
+            HomeCore.count2=event.snapshot.child("count_offers").value.toString();
+            HomeCore.count1=event.snapshot.child("counts").value.toString();
+
+          });
+
+      })
+    });
+
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {

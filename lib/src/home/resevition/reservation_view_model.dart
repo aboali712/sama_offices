@@ -1,4 +1,6 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sama_offices/src/home/home_core.dart';
 import 'package:sama_offices/src/home/resevition/model/get_bookings_model.dart';
 import 'package:sama_offices/src/home/resevition/reservation_view.dart';
 
@@ -14,8 +16,14 @@ abstract class ReservationsViewModel extends State<ReservationPage> {
   @override
   void initState() {
     getReservationsApi();
+
+    HomeCore.starCountRef!.child("counts").set("0");
+
+
+
     super.initState();
   }
+
 
   Future<void> getReservationsApi() async {
     Map<String, String> mp = {};

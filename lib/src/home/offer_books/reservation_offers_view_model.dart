@@ -3,6 +3,7 @@ import 'package:sama_offices/src/home/offer_books/reservation_offers_view.dart';
 import 'package:sama_offices/src/home/resevition/model/get_bookings_model.dart';
 
 import '../../../main.dart';
+import '../home_core.dart';
 import '../resevition/model/bookingreponse_reponse.dart';
 
 abstract class ReservationsOffersViewModel extends State<ReservationOffersPage> {
@@ -14,6 +15,8 @@ abstract class ReservationsOffersViewModel extends State<ReservationOffersPage> 
   @override
   void initState() {
     getReservationsApi();
+    HomeCore.starCountRef!.child("count_offers").set("0");
+
     super.initState();
   }
 

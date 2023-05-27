@@ -108,7 +108,7 @@ abstract class UpdateProfileViewModel extends State<UpdateProfile>
       toastAppSuccess(rs.msg!,context);
       await saveUser(rs.data);
       SamaOfficesApp.navKey.currentState!.pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomeCore()),
+        MaterialPageRoute(builder: (context) =>  HomeCore()),
       );
 
 

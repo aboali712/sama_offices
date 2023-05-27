@@ -1,13 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sama_offices/core/cash/storage.helper.dart';
 
 import '../../src/home/home_core.dart';
 import '../values/colors.dart';
 
-
-
-class BottomMenu extends StatelessWidget implements SelectBottomMenu {
+class BottomMenu extends StatelessWidget
+    with StorageHelper
+    implements SelectBottomMenu {
   final int? bottomMenuIndex;
   final ValueChanged<int>? onChanged;
   BottomMenu({this.bottomMenuIndex, this.onChanged});
@@ -56,7 +57,8 @@ class BottomMenu extends StatelessWidget implements SelectBottomMenu {
         child: BottomNavigationBar(
           key: HomeCorePage.bottomWidgetKey,
           type: BottomNavigationBarType.fixed,
-          selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold,height: 1.5),
+          selectedLabelStyle:
+              const TextStyle(fontWeight: FontWeight.bold, height: 1.5),
           currentIndex: bottomMenuIndex!,
           onTap: (value) {
             switch (value) {
@@ -73,29 +75,84 @@ class BottomMenu extends StatelessWidget implements SelectBottomMenu {
               case 3:
                 onChanged!(3);
                 break;
-              // case 4:
-              //   onChanged!(4);
+                // case 4:
+                //   onChanged!(4);
                 break;
             }
           },
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'assets/images/home.svg',
-                  height: 24.0,
-                  width: 24.0,
-                  color: bottomMenuIndex == 0 ? Colors.black : Colors.grey,
-                ),
-                label: tr("ServiceRequests"),),
+              icon: Stack(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    height: 46,
+                    width: 46,
+                    child: SvgPicture.asset(
+                      'assets/images/home.svg',
+                      height: 24.0,
+                      width: 24.0,
+                      color: bottomMenuIndex == 0 ? Colors.black : Colors.grey,
+                    ),
+                  ),
+                  Positioned(
+                    right: 2,
+                    child: Container(
+                      height: 20,
+                      width: 20,
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Colors.red, width: 2)),
+                      child: Center(
+                          child: Text(
+                        HomeCore.count1,
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 10),
+                      )),
+                    ),
+                  )
+                ],
+              ),
+              label: tr("ServiceRequests"),
+            ),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'assets/images/discount.svg',
-                  height: 24.0,
-                  width: 24.0,
-                  color: bottomMenuIndex == 1 ? Colors.black : Colors.grey,
+                icon: Stack(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      height: 46,
+                      width: 46,
+                      child:
+                      SvgPicture.asset(
+                        'assets/images/discount.svg',
+                        height: 24.0,
+                        width: 24.0,
+                        color: bottomMenuIndex == 1 ? Colors.black : Colors.grey,
+                      ),
+                    ),
+                    Positioned(
+                      right: 2,
+                      child: Container(
+                        height: 20,
+                        width: 20,
+                        decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Colors.red, width: 2)),
+                        child: Center(
+                            child: Text(
+                          HomeCore.count2,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 10),
+                        )),
+                      ),
+                    )
+                  ],
                 ),
-                label: tr("PackageRequests",)),
-
+                label: tr(
+                  "PackageRequests",
+                )),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'assets/images/more.svg',
@@ -103,8 +160,8 @@ class BottomMenu extends StatelessWidget implements SelectBottomMenu {
                 width: 24.0,
                 color: bottomMenuIndex == 2 ? Colors.black : Colors.grey,
               ),
-              label: tr("Offers"),),
-
+              label: tr("Offers"),
+            ),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
                   'assets/images/heart.svg',

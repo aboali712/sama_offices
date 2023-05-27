@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
@@ -60,7 +61,7 @@ abstract class VerifyCodeViewModel extends State<VrifyCode> with StorageHelper {
     setState(() {
       isLoading = true;
     });
-    var rs = await dio.post("v1/office/verify-code", data: Map.of({"code": pinCode}));
+    var rs = await dio.post("v1/office/verify-code", data: Map.of({"code": pinCode,"phone":phone}));
     var response = AuthResponse(rs.data!);
 
 
@@ -73,9 +74,10 @@ abstract class VerifyCodeViewModel extends State<VrifyCode> with StorageHelper {
 
       if (pageType == "0") {
         await saveUser(response.data!);
+        saveUserFirebase(response.data!.office!.id.toString());
 
         SamaOfficesApp.navKey.currentState!.pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeCore()),
+          MaterialPageRoute(builder: (context) =>  HomeCore()),
         );
       } else {
         SamaOfficesApp.navKey.currentState!.pushReplacement(
@@ -91,6 +93,15 @@ abstract class VerifyCodeViewModel extends State<VrifyCode> with StorageHelper {
 
 
     }
+  }
+  Future<void> saveUserFirebase(String id) async {
+    Map<String, String> mp = Map.of({"count_offers": "0", "counts": "0"});
+
+    DatabaseReference starCountRef =
+    FirebaseDatabase.instance.ref('offices/$id');
+    starCountRef.get().then((value) => {
+      if (value.children.isEmpty) {starCountRef.set(mp)}
+    });
   }
 
   Future<void> resend() async {

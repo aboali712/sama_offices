@@ -34,7 +34,7 @@ class SplashViewState extends State<SplashView> with StorageHelper {
     if (readAuthManager.isFirst == false) {
       if(readAuthManager.isLogin){
         SamaOfficesApp.navKey.currentState!.pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeCore()),);
+          MaterialPageRoute(builder: (context) =>  HomeCore()),);
       }else {
         SamaOfficesApp.navKey.currentState!.pushReplacement(
           MaterialPageRoute(builder: (context) => const LoginPage()),);
