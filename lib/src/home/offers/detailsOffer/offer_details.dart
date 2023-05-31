@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sama_offices/core/utils/helper_manager.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../../app.dart';
@@ -295,17 +296,19 @@ class _OfferDetailsPageState extends OfferDetailsViewModel {
                                         child: SizedBox(
                                           width: size.width,
                                           child: Html(
-                                            data: offerDetailsModel!
-                                                .offerDetails!.description!,
-                                            customTextAlign: (_) =>
-                                                TextAlign.start,
+
+                                          data:  offerDetailsModel!
+                                                .offerDetails!.description!.nonBreaking,
+                                            style: {
+                                              'div': Style(textAlign: TextAlign.start),
+                                            },
                                           ),
                                         ),
                                       ),
                                     ],
                                   ),
                                   const SizedBox(
-                                    height: 20,
+                                    height: 100,
                                   ),
 
                                 ],

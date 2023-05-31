@@ -144,7 +144,7 @@
   "EnterTheIBANNumber": "Enter the IBAN number",
   "SubscriptionPlan": "Subscription plan",
   "ChooseTheSubscriptionPlan": "Choose the subscription plan",
-  "ServiceRequests": "Service requests",
+  "ServiceRequests": "Services requests",
   "PackageRequests": "Package requests",
   "NewOrders": "New orders",
   "RequestsAreInProgress": "Requests are in progress",
@@ -173,6 +173,7 @@
   "HotelName": "Hotel Name",
   "TicketType": "Ticket Type",
   "TravelClass": "Travel Class",
+  "Notification": "Notifications",
   "Vises": "Vises",
   "All": "All",
   "HotelBookings": "Hotel Bookings",
@@ -227,7 +228,11 @@
   "OrGetTouch": "Or get in touch with us by sending your inquiry",
   "Subject": "Subject",
   "yourInquiry": "Your Inquiry",
-  "Send": "Send"
+  "Send": "Send",
+  "UpdaTeNow": "New Version ",
+  "UpdaTe": "Update",
+  "IOsIsAvli": "A new version of sama is available!",
+  "Pl": "Please update your version to get all features"
 
 
 

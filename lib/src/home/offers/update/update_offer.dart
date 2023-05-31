@@ -9,6 +9,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sama_offices/core/utils/helper_manager.dart';
 import 'package:sama_offices/src/home/offers/all/models/offer_model.dart';
 import 'package:sama_offices/src/home/offers/update/update_offer_view_model.dart';
 
@@ -244,7 +245,7 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
                                     });
                                   }),
                               htmlEditorOptions: HtmlEditorOptions(
-                                  hint: tr("TypeHere"), initialText: detailsAr
+                                  hint: tr("TypeHere"), initialText: detailsAr.nonBreaking
                                   //initalText: "text content initial, if any",
                                   ),
                               htmlToolbarOptions: const HtmlToolbarOptions(

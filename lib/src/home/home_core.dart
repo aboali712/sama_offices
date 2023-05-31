@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +11,10 @@ import 'package:sama_offices/src/home/more/more_page_screen.dart';
 import 'package:sama_offices/src/home/offer_books/reservation_offers_view.dart';
 import 'package:sama_offices/src/home/offers/all/offers_page.dart';
 import 'package:sama_offices/src/home/resevition/reservation_view.dart';
+import 'package:upgrader/upgrader.dart';
 
 
+import '../../core/utils/helper_manager.dart';
 import '../../core/values/theme.dart';
 import '../../core/widget/bottom_menu.dart';
 
@@ -68,6 +72,7 @@ class HomeCorePage extends State<HomeCore> with StorageHelper {
         );
     Widget child = Container();
     switch (index) {
+
       case 0:
         child =  const ReservationPage();
         break;
@@ -87,12 +92,20 @@ class HomeCorePage extends State<HomeCore> with StorageHelper {
         locale: context.locale,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.of(context),
-        home: Scaffold(
-          body: AnnotatedRegion<SystemUiOverlayStyle>(
-              value: SystemUiOverlayStyle.dark, child: child),
-          bottomNavigationBar: BottomMenu(
-            bottomMenuIndex: index,
-            onChanged: (newIndex) => setState(() => index = newIndex),
+        home:UpgradeAlert(
+          upgrader: Upgrader(
+              showReleaseNotes: false,
+              dialogStyle: Platform.isIOS ? UpgradeDialogStyle.cupertino : UpgradeDialogStyle.material,
+              showLater: false,
+              showIgnore: false,
+              messages: MyUpgraderMessages()),
+          child: Scaffold(
+            body: AnnotatedRegion<SystemUiOverlayStyle>(
+                value: SystemUiOverlayStyle.dark, child: child),
+            bottomNavigationBar: BottomMenu(
+              bottomMenuIndex: index,
+              onChanged: (newIndex) => setState(() => index = newIndex),
+            ),
           ),
         ));
   }

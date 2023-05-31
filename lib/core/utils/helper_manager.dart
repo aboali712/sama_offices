@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:upgrader/upgrader.dart';
 
 late StreamSubscription<DatabaseEvent> messagesSubscriptions;
 late DatabaseReference messagesRef;
@@ -79,4 +81,22 @@ DatabaseReference getChatMessage(String groupChatId, int limit) {
 
   return messagesRef;
 
+}
+const int $nbsp = 0x00A0;
+
+extension StringExtension on String {
+  String get nonBreaking => replaceAll('&nbsp;','  ');
+}
+
+class MyUpgraderMessages extends UpgraderMessages {
+  @override
+  String get buttonTitleUpdate => tr('UpdaTeNow');
+  @override
+  String get title => tr('UpdaTe');
+  @override
+  String get body => tr("Pl");
+  @override
+  String get releaseNotes => "";
+  @override
+  String get prompt => "";
 }

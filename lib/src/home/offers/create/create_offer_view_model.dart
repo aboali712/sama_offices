@@ -49,6 +49,7 @@ abstract class CreateOfferPageViewModel extends  State<CreateOfferPage>   with S
   var index=0;
   ImagePicker picker = ImagePicker();
 
+
   XFile? imageOffice;
   List<XFile>? images;
   var detailsAr="";

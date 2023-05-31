@@ -11,8 +11,6 @@ import '../../../../core/utils/helper_manager.dart';
 import '../../../core/cash/storage.helper.dart';
 import '../../../core/values/colors.dart';
 
-
-
 class NotificationPage extends StatefulWidget {
   const NotificationPage({Key? key}) : super(key: key);
 
@@ -29,13 +27,12 @@ class _NotificationPageState extends State<NotificationPage>
   @override
   void initState() {
     super.initState();
-    this.getToken().then((value) =>
-    {
-      setState(() {
-        token = value!;
-        callApiBackend();
-      })
-    });
+    this.getToken().then((value) => {
+          setState(() {
+            token = value!;
+            callApiBackend();
+          })
+        });
   }
 
   Future<void> callApiBackend() async {
@@ -47,6 +44,20 @@ class _NotificationPageState extends State<NotificationPage>
       setState(() {
         isLoading = false;
         list = NotResponse(response.data!).data!;
+      });
+    }
+  }
+
+  Future<void> deleteCallApiBackend(String id) async {
+    if (token != "" && token != null) {
+      setState(() {
+        isLoading = true;
+      });
+      final response = await dio.get("v1/office/deleteNotification",
+          queryParameters: Map.of({"notification_id": id}));
+      setState(() {
+        isLoading = false;
+        callApiBackend();
       });
     }
   }
@@ -88,79 +99,138 @@ class _NotificationPageState extends State<NotificationPage>
             ? !isLoading
                 ? list.isNotEmpty
                     ? Expanded(
-                        child: ListView.builder(
-                          itemCount: list.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              padding: EdgeInsets.all(10),
-                              margin: EdgeInsets.all(5),
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(color: grayColor)),
-                              child: Row(
-                                children: [
-                                  CircleAvatar(
-                                    radius:30,
-                                    backgroundImage:  Image.asset("assets/images/applogo.png",height: 80,width: 80,).image,
-                                  ),
-
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        child: Text(
-                                          list[index].title!,
-                                          style: const TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
+                        child: SingleChildScrollView(
+                          child: Column(
+                              children: list
+                                  .map((notif) => Container(
+                                        padding: EdgeInsets.all(5),
+                                        margin: EdgeInsets.all(5),
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            border:
+                                                Border.all(color: grayColor)),
+                                        child: Row(
+                                          children: [
+                                            CircleAvatar(
+                                              radius: 30,
+                                              backgroundImage: Image.asset(
+                                                "assets/images/applogo.png",
+                                                height: 80,
+                                                width: 80,
+                                              ).image,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width -
+                                                      100,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        notif.title!,
+                                                        style: const TextStyle(
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      IconButton(
+                                                        style: IconButton.styleFrom(
+                                                            fixedSize:
+                                                                const Size(
+                                                                    50, 50),
+                                                            backgroundColor:
+                                                                Colors.red,
+                                                            shape: RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            15))),
+                                                        icon: const Icon(
+                                                          Icons.close,
+                                                          color: Colors.red,
+                                                          size: 25,
+                                                        ),
+                                                        onPressed: () {
+                                                          deleteCallApiBackend(
+                                                              notif.id
+                                                                  .toString());
+                                                        },
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width -
+                                                      150,
+                                                  child: Text(
+                                                    notif.description!,
+                                                    style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.normal),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      SizedBox(
-                                        child: Text(
-                                          list[index].description!,
-                                          style: const TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.normal),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
+                                      ))
+                                  .toList()),
                         ),
                       )
-                    : const Expanded(child: Center(child: Text("No Notifications")))
+                    : const Expanded(
+                        child: Center(child: Text("No Notifications")))
                 : const Expanded(
                     child: Center(
                     child: CircularProgressIndicator(),
                   ))
             : Center(
-              child: Container(
-                margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/5),
+                child: Container(
+                margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height / 5),
                 child: Column(
                   children: [
                     SvgPicture.asset("assets/images/login.svg"),
-                    const SizedBox(height: 20,),
-                    Text(tr("LoginRequired"),style: const TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
-                    const SizedBox(height: 10,),
-                    Text(tr("LoginRequiredDesc"),style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w500),),
-
-
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      tr("LoginRequired"),
+                      style: const TextStyle(
+                          fontSize: 17, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      tr("LoginRequiredDesc"),
+                      style: const TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w500),
+                    ),
                   ],
                 ),
-              )
-            )
+              ))
       ]),
     );
   }

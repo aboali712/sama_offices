@@ -58,7 +58,7 @@ class BottomMenu extends StatelessWidget
           key: HomeCorePage.bottomWidgetKey,
           type: BottomNavigationBarType.fixed,
           selectedLabelStyle:
-              const TextStyle(fontWeight: FontWeight.bold, height: 1.5),
+              const TextStyle(fontWeight: FontWeight.w500, height: 1.5),
           currentIndex: bottomMenuIndex!,
           onTap: (value) {
             switch (value) {
@@ -81,6 +81,20 @@ class BottomMenu extends StatelessWidget
             }
           },
           items: <BottomNavigationBarItem>[
+            // BottomNavigationBarItem(
+            //   icon:  Container(
+            //     padding: const EdgeInsets.all(10),
+            //     height: 46,
+            //     width: 46,
+            //     child: SvgPicture.asset(
+            //       'assets/images/home.svg',
+            //       height: 24.0,
+            //       width: 24.0,
+            //       color: bottomMenuIndex == 0 ? Colors.black : Colors.grey,
+            //     ),
+            //   ),
+            //   label: tr("Home"),
+            // ),
             BottomNavigationBarItem(
               icon: Stack(
                 children: [
@@ -154,20 +168,30 @@ class BottomMenu extends StatelessWidget
                   "PackageRequests",
                 )),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/images/more.svg',
-                height: 24.0,
-                width: 24.0,
-                color: bottomMenuIndex == 2 ? Colors.black : Colors.grey,
+              icon:  Container(
+                padding: const EdgeInsets.all(10),
+                height: 46,
+                width: 46,
+                child: SvgPicture.asset(
+                  'assets/images/more.svg',
+                  height: 24.0,
+                  width: 24.0,
+                  color: bottomMenuIndex == 2 ? Colors.black : Colors.grey,
+                ),
               ),
               label: tr("Offers"),
             ),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'assets/images/heart.svg',
-                  height: 24.0,
-                  width: 24.0,
-                  color: bottomMenuIndex == 3 ? Colors.black : Colors.grey,
+                icon:  Container(
+                  padding: const EdgeInsets.all(10),
+                  height: 46,
+                  width: 46,
+                  child: SvgPicture.asset(
+                    'assets/images/heart.svg',
+                    height: 24.0,
+                    width: 24.0,
+                    color: bottomMenuIndex == 3 ? Colors.black : Colors.grey,
+                  ),
                 ),
                 label: tr('More')),
           ],

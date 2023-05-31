@@ -92,7 +92,9 @@ class _AboutUsState extends AboutUsViewModel {
                             : MoreViewModelPage.typePage == "3"
                             ? MoreViewModelPage.settingsModel!.office_terms!
                                 : MoreViewModelPage.settingsModel!.terms!,
-                        customTextAlign: (_) => TextAlign.start,
+                        style: {
+                          'div': Style(textAlign: TextAlign.start),
+                        },
                       ),
                     ),
                   ),

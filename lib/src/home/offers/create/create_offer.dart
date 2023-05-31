@@ -232,7 +232,9 @@ class _CreateOfferPageState extends CreateOfferPageViewModel {
                             margin: const EdgeInsets.all(10),
                             width: size.width,
                             color: const Color(0xFFf5f9f9),
-                            child: HtmlEditor(
+                            child:
+
+                            HtmlEditor(
                               controller: controllerDetailsAr, //required
                               callbacks: Callbacks(
                                   onBeforeCommand: (String? currentHtml) {},
