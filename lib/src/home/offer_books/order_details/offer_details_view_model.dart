@@ -13,7 +13,7 @@ abstract class OrderOfferDetailsViewModel extends State<OrderOfferDetails> with 
    BookingsModel bookingsModelDetails=BookingsModel();
   static BookingsModel bookingsModel=BookingsModel();
    int select=1;
-   List listStatues= [tr("Pending"),tr("Reviewing"),tr("Accepted"),tr("Processing"),tr("Completed"),tr("Cancelled") ];
+   List listStatues= [tr("Pending"),tr("Reviewing"),tr("Accepted"),tr("PendingPaymentً"),tr("Processing"),tr("Completed"),tr("Cancelled") ];
    String selectStatus="";
    bool isLoading=false;
 
@@ -24,7 +24,7 @@ abstract class OrderOfferDetailsViewModel extends State<OrderOfferDetails> with 
      bookingsModelDetails=bookingsModel;
      selectStatus= bookingsModelDetails.status=="pending" ? tr("Pending") :  bookingsModelDetails.status=="accepted" ? tr("Accepted")
          :  bookingsModelDetails.status=="inReview" ? tr("Reviewing") :  bookingsModelDetails.status=="processing" ? tr("Processing")
-         :  bookingsModelDetails.status=="completed" ? tr("Completed") :  tr("Cancelled");
+         :  bookingsModelDetails.status=="completed" ? tr("Completed")  :  bookingsModelDetails.status=="waiting_for_pay" ? tr("PendingPaymentً"):  tr("Cancelled");
    });
     super.initState();
   }
@@ -38,7 +38,7 @@ abstract class OrderOfferDetailsViewModel extends State<OrderOfferDetails> with 
      mp["reservation_id"]=bookingsModelDetails.id.toString();
      var st = selectStatus==tr("Pending") ? "pending"   : selectStatus== tr("Accepted")? "accepted"
          :  selectStatus== tr("Reviewing") ? "inReview"  : selectStatus== tr("Processing")?"processing"
-         :  selectStatus== tr("Completed")?"completed"  :  "canceled";
+         :  selectStatus== tr("Completed")?"completed"  :selectStatus== tr("PendingPaymentً")?"waiting_for_pay" :  "canceled";
      mp["status"] = st;
      final response =
      await dio.post("v1/office/changeStatus", data: mp);

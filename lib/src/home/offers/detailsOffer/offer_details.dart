@@ -147,7 +147,26 @@ class _OfferDetailsPageState extends OfferDetailsViewModel {
                                   ),
                                 ),
                               ),
+                            ),
+
+                            offerDetailsModel!.offerDetails!.is_vip.toString()=="1"
+                          ?  Align(
+                              alignment: AlignmentDirectional.bottomEnd,
+
+                              child: Container(
+                                width: 100,
+                                height: 100,
+                                margin: const EdgeInsets.only(top: 250,left: 10,right: 10),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(50)),
+                                child: Center(
+                                  child: Image.asset("assets/images/vip.png",height: 90,width: 90)
+                                ),
+                              ),
                             )
+                            :const SizedBox.shrink(),
+
                           ],
                         ),
                         const SizedBox(

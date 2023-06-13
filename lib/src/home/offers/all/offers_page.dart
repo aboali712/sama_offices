@@ -130,7 +130,24 @@ class _OffersPageState extends OffersPageViewModel {
                                         ],
                                       ),
                                     ),
+                                  ),
+                                  offer.is_vip.toString()=="1"
+                                      ?  Align(
+                                    alignment: AlignmentDirectional.bottomEnd,
+
+                                    child: Container(
+                                      width: 70,
+                                      height: 70,
+                                      margin: const EdgeInsets.only(top: 10,left: 10,right: 10),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(35)),
+                                      child: Center(
+                                          child: Image.asset("assets/images/vip.png",height: 60,width: 60)
+                                      ),
+                                    ),
                                   )
+                                      :const SizedBox.shrink(),
                                 ],
                               ),
                               const SizedBox(

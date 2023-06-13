@@ -187,6 +187,10 @@ class _ReservationPageState extends ReservationsOffersViewModel {
                                                     "inReview"
                                                     ? tr(
                                                     "Reviewing")
+                                                    : e.status == "waiting_for_pay"
+                                                    ? tr("waiting_for_pay")
+                                                    : e.status == "payment_confirmed"
+                                                    ? tr("payment_confirmed")
                                                                 : "",
                                                 style: TextStyle(
                                                     fontWeight:

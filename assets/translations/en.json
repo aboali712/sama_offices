@@ -232,8 +232,9 @@
   "UpdaTeNow": "New Version ",
   "UpdaTe": "Update",
   "IOsIsAvli": "A new version of sama is available!",
-  "Pl": "Please update your version to get all features"
-
-
-
+  "Pl": "Please update your version to get all features",
+  "PackageISVip": "Package Is VIP",
+  "PendingPaymentً": "Pending Payment ",
+  "payment_confirmed": "payment_confirmed",
+  "waiting_for_pay": "waiting for pay"
 }

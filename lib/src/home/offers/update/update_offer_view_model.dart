@@ -24,6 +24,8 @@ abstract class UpdateOfferPageViewModel extends State<UpdateOfferPage>
 
   TabController? tabControllerTitle;
 
+  bool isVIP=false;
+
   TextEditingController titleArController = TextEditingController();
   TextEditingController titleEnController = TextEditingController();
   HtmlEditorController controllerDetailsAr = HtmlEditorController();
@@ -115,6 +117,8 @@ abstract class UpdateOfferPageViewModel extends State<UpdateOfferPage>
       selectStatus ==  "normal" ? tr("Normal")  : tr("Weekend");
       priceBeforeController.text=offerModel!.priceBefore!.toString();
 
+      isVIP=offerModel!.is_vip.toString()=="1";
+
       priceAfterController.text=offerModel!.priceAfter!.toString();
 
       selectedOfficeBranch = filterModel!.countries!
@@ -137,6 +141,9 @@ abstract class UpdateOfferPageViewModel extends State<UpdateOfferPage>
               .name;
         });
       }
+
+      imageOffice=null;
+      images=null;
 
 
 
@@ -194,7 +201,7 @@ abstract class UpdateOfferPageViewModel extends State<UpdateOfferPage>
       mp["country_id"] = countryId;
       mp["city_id"] = selectedCityBranchID;
       mp["price_after"] = priceAfterController.value.text.toString();
-      mp["is_vip"]="0";
+      mp["is_vip"]= isVIP ? "1":"0";
 
       mp["price_before"] = priceBeforeController.value.text.toString();
 

@@ -46,6 +46,9 @@ abstract class CreateOfferPageViewModel extends  State<CreateOfferPage>   with S
   String selectStatus=tr("Normal");
   bool isLoading=false;
 
+  bool isVIP=false;
+
+
   var index=0;
   ImagePicker picker = ImagePicker();
 
@@ -137,11 +140,11 @@ abstract class CreateOfferPageViewModel extends  State<CreateOfferPage>   with S
       mp["description_ar"]=detailsAr;
       mp["description_en"]=detailsEn;
       mp["country_id"]=countryId;
-      mp["is_vip"]="0";
+      mp["is_vip"]= isVIP ? "1":"0";
 
       mp["city_id"]=selectedCityBranchID;
-      mp["price_after"]=priceAfterController.value.text.toString();;
-      mp["price_before"]=priceBeforeController.value.text.toString();;
+      mp["price_after"]=priceAfterController.value.text.toString();
+      mp["price_before"]=priceBeforeController.value.text.toString();
       mp["start_date"]=startSelectedDate;
       mp["end_date"]=endSelectedDate;
 

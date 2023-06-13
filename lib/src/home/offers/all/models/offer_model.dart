@@ -11,6 +11,8 @@ class OfferModel {
   String? nameAr;
   String? nameEn;
   String? status;
+  dynamic is_vip;
+
 
   String? image;
   bool? is_favourite;
@@ -39,6 +41,7 @@ class OfferModel {
         this.officeImage,
         this.is_favourite,
         this.status,
+        this.is_vip,
         this.name,
         this.image,
         this.cityId,
@@ -69,6 +72,7 @@ class OfferModel {
     nameAr = json['name_ar'];
     nameEn = json['name_en'];
     status = json['status'];
+    is_vip = json['is_vip'];
 
     image = json['image'];
     description = json['description'];
@@ -105,6 +109,7 @@ class OfferModel {
     data['name_ar'] = this.nameAr;
     data['name_en'] = this.nameEn;
     data['status'] = this.status;
+    data['is_vip'] = this.is_vip;
 
     data['image'] = this.image;
     data['description'] = this.description;

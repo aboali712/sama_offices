@@ -18,7 +18,7 @@ class AuthenticationManager extends StorageHelper {
   Future<void> fetchUserLogin() async {
     final token = await getToken();
 
-    if (token != null && token.length > 3) {
+    if (token != null && token!="") {
       isLogin = true;
     }
   }

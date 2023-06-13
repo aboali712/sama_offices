@@ -549,6 +549,27 @@ class _CreateOfferPageState extends CreateOfferPageViewModel {
                       const SizedBox(
                         height: 10,
                       ),
+                      Row(
+                        children: [
+                          Checkbox(value: isVIP, onChanged: (newVal){
+                            setState(() {
+                              isVIP=newVal!;
+                            });
+                          }),
+                          Text(
+                            tr("PackageISVip"),
+                            style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: textColor),
+                          ),
+                        ],
+                      ),
+
+
+                      const SizedBox(
+                        height: 10,
+                      ),
                       TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         controller: priceBeforeController,
