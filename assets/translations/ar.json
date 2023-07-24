@@ -236,5 +236,6 @@
   "PackageISVip": "هل الباكدج VIP ؟",
   "PendingPaymentً": "استكمال الطلب",
   "payment_confirmed": "تم تاكيد الدفع",
-  "waiting_for_pay": "انتظار الدفع"
+  "waiting_for_pay": "انتظار الدفع",
+  "Country": "الدولة"
 }

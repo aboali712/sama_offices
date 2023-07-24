@@ -236,5 +236,6 @@
   "PackageISVip": "Package Is VIP",
   "PendingPaymentً": "Pending Payment ",
   "payment_confirmed": "payment_confirmed",
-  "waiting_for_pay": "waiting for pay"
+  "waiting_for_pay": "waiting for pay",
+  "Country": "Country"
 }

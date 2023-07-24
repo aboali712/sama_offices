@@ -678,7 +678,7 @@ class _OrderDetailsState extends OrderDetailsViewModel {
                                                                 height: 5,
                                                               ),
                                                               Text(
-                                                                "${tr("Notes")} : ${service.notes!}",
+                                                                "${tr("Notes")} : ${service.notes??""}",
                                                                 style: const TextStyle(
                                                                     color:
                                                                         Colors.black,
