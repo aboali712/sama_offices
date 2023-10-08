@@ -9,11 +9,16 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:multi_select_flutter/dialog/multi_select_dialog_field.dart';
+import 'package:multi_select_flutter/util/multi_select_item.dart';
+import 'package:multi_select_flutter/util/multi_select_list_type.dart';
 import 'package:sama_offices/core/utils/helper_manager.dart';
 import 'package:sama_offices/src/home/offers/all/models/offer_model.dart';
 import 'package:sama_offices/src/home/offers/update/update_offer_view_model.dart';
 
+import '../../../../core/utils/input_validators.dart';
 import '../../../../core/values/colors.dart';
+import '../../../auth/signup/all_filter/country_model.dart';
 
 class UpdateOfferPage extends StatefulWidget {
   const UpdateOfferPage({Key? key}) : super(key: key);
@@ -28,7 +33,7 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
     Size size = MediaQuery.of(context).size;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: yellowColor,
+        statusBarColor: samaOfficeColor,
         /* set Status bar color in Android devices. */
         statusBarIconBrightness: Brightness.dark,
         /* set Status bar icons color in Android devices.*/
@@ -39,7 +44,7 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
         Column(
           children: [
             Container(
-              color: yellowColor,
+              color: samaOfficeColor,
               width: size.width,
               height: 100,
               child: Align(
@@ -53,10 +58,12 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: const Icon(
-                          Icons.arrow_back_ios,
-                          size: 20,
-                          color: Colors.black,
+                        child: const SizedBox(width: 30,height: 30,
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            size: 20,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                       Text(
@@ -308,166 +315,265 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
                       const SizedBox(
                         height: 10,
                       ),
-                      TypeAheadField<String>(
-                        textFieldConfiguration: TextFieldConfiguration(
-                          controller:
-                              TextEditingController(text: selectedOfficeBranch),
-                          autofocus: false,
-                          style: GoogleFonts.tajawal(
-                              color: Colors.black,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 15),
-                          decoration: InputDecoration(
-                            fillColor: const Color(0xFFf5f9f9),
-                            filled: true,
-                            hintStyle: GoogleFonts.tajawal(fontSize: 14),
-                            hintText: tr('ChooseCountry'),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
-                              borderSide:
-                                  BorderSide(width: 1, color: klightGray),
-                            ),
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
-                              borderSide:
-                                  BorderSide(width: .7, color: klightGray),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
-                              borderSide: BorderSide(
-                                width: .7,
-                                color: klightGray,
-                              ),
-                            ),
-                            border: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                borderSide: BorderSide(
-                                  width: 1,
-                                )),
-                            errorBorder: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                borderSide:
-                                    BorderSide(width: 0.7, color: accentColor)),
-                            focusedErrorBorder: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                borderSide:
-                                    BorderSide(width: 0.7, color: accentColor)),
-                          ),
+                      // TypeAheadField<String>(
+                      //   textFieldConfiguration: TextFieldConfiguration(
+                      //     controller:
+                      //         TextEditingController(text: selectedOfficeBranch),
+                      //     autofocus: false,
+                      //     style: GoogleFonts.tajawal(
+                      //         color: Colors.black,
+                      //         fontWeight: FontWeight.normal,
+                      //         fontSize: 15),
+                      //     decoration: InputDecoration(
+                      //       fillColor: const Color(0xFFf5f9f9),
+                      //       filled: true,
+                      //       hintStyle: GoogleFonts.tajawal(fontSize: 14),
+                      //       hintText: tr('ChooseCountry'),
+                      //       focusedBorder: OutlineInputBorder(
+                      //         borderRadius:
+                      //             const BorderRadius.all(Radius.circular(8)),
+                      //         borderSide:
+                      //             BorderSide(width: 1, color: klightGray),
+                      //       ),
+                      //       disabledBorder: OutlineInputBorder(
+                      //         borderRadius:
+                      //             const BorderRadius.all(Radius.circular(8)),
+                      //         borderSide:
+                      //             BorderSide(width: .7, color: klightGray),
+                      //       ),
+                      //       enabledBorder: OutlineInputBorder(
+                      //         borderRadius:
+                      //             const BorderRadius.all(Radius.circular(8)),
+                      //         borderSide: BorderSide(
+                      //           width: .7,
+                      //           color: klightGray,
+                      //         ),
+                      //       ),
+                      //       border: const OutlineInputBorder(
+                      //           borderRadius:
+                      //               BorderRadius.all(Radius.circular(8)),
+                      //           borderSide: BorderSide(
+                      //             width: 1,
+                      //           )),
+                      //       errorBorder: const OutlineInputBorder(
+                      //           borderRadius:
+                      //               BorderRadius.all(Radius.circular(8)),
+                      //           borderSide:
+                      //               BorderSide(width: 0.7, color: accentColor)),
+                      //       focusedErrorBorder: const OutlineInputBorder(
+                      //           borderRadius:
+                      //               BorderRadius.all(Radius.circular(8)),
+                      //           borderSide:
+                      //               BorderSide(width: 0.7, color: accentColor)),
+                      //     ),
+                      //   ),
+                      //   suggestionsCallback: (pattern) async {
+                      //     return filterModel!.countries!
+                      //         .map((e) => e.name!)
+                      //         .toList()
+                      //         .where((item) => item
+                      //             .toLowerCase()
+                      //             .startsWith(pattern.toLowerCase()));
+                      //   },
+                      //   itemBuilder: (context, suggestion) {
+                      //     return ListTile(
+                      //       title: Text(suggestion),
+                      //     );
+                      //   },
+                      //   onSuggestionSelected: (suggestion) {
+                      //     setState(() {
+                      //       selectedOfficeBranch = suggestion;
+                      //       selectedOfficeBranchID = filterModel!.countries!
+                      //           .firstWhere(
+                      //               (element) => element.name == suggestion)
+                      //           .id
+                      //           .toString();
+                      //       countryId = selectedOfficeBranchID!;
+                      //       selectedCityBranch = "";
+                      //       selectedCityBranchID="";
+                      //       getCityDataApi();
+                      //     });
+                      //   },
+                      // ),
+                      // const SizedBox(
+                      //   height: 10,
+                      // ),
+                      // TypeAheadField<String>(
+                      //   textFieldConfiguration: TextFieldConfiguration(
+                      //     controller:
+                      //         TextEditingController(text: selectedCityBranch),
+                      //     autofocus: false,
+                      //     style: GoogleFonts.tajawal(
+                      //         color: Colors.black,
+                      //         fontWeight: FontWeight.normal,
+                      //         fontSize: 15),
+                      //     decoration: InputDecoration(
+                      //       fillColor: const Color(0xFFf5f9f9),
+                      //       filled: true,
+                      //       hintStyle: GoogleFonts.tajawal(fontSize: 14),
+                      //       hintText: tr('ChooseTheCity'),
+                      //       focusedBorder: OutlineInputBorder(
+                      //         borderRadius:
+                      //             const BorderRadius.all(Radius.circular(8)),
+                      //         borderSide:
+                      //             BorderSide(width: 1, color: klightGray),
+                      //       ),
+                      //       disabledBorder: OutlineInputBorder(
+                      //         borderRadius:
+                      //             const BorderRadius.all(Radius.circular(8)),
+                      //         borderSide:
+                      //             BorderSide(width: .7, color: klightGray),
+                      //       ),
+                      //       enabledBorder: OutlineInputBorder(
+                      //         borderRadius:
+                      //             const BorderRadius.all(Radius.circular(8)),
+                      //         borderSide: BorderSide(
+                      //           width: .7,
+                      //           color: klightGray,
+                      //         ),
+                      //       ),
+                      //       border: const OutlineInputBorder(
+                      //           borderRadius:
+                      //               BorderRadius.all(Radius.circular(8)),
+                      //           borderSide: BorderSide(
+                      //             width: 1,
+                      //           )),
+                      //       errorBorder: const OutlineInputBorder(
+                      //           borderRadius:
+                      //               BorderRadius.all(Radius.circular(8)),
+                      //           borderSide:
+                      //               BorderSide(width: 0.7, color: accentColor)),
+                      //       focusedErrorBorder: const OutlineInputBorder(
+                      //           borderRadius:
+                      //               BorderRadius.all(Radius.circular(8)),
+                      //           borderSide:
+                      //               BorderSide(width: 0.7, color: accentColor)),
+                      //     ),
+                      //   ),
+                      //   suggestionsCallback: (pattern) async {
+                      //     return cites.map((e) => e.name!).toList().where(
+                      //         (item) => item
+                      //             .toLowerCase()
+                      //             .startsWith(pattern.toLowerCase()));
+                      //   },
+                      //   itemBuilder: (context, suggestion) {
+                      //     return ListTile(
+                      //       title: Text(suggestion),
+                      //     );
+                      //   },
+                      //   onSuggestionSelected: (suggestion) {
+                      //     setState(() {
+                      //       selectedCityBranch = suggestion;
+                      //       selectedCityBranchID = cites
+                      //           .firstWhere(
+                      //               (element) => element.name == suggestion)
+                      //           .id
+                      //           .toString();
+                      //     });
+                      //   },
+                      // ),
+                      // const SizedBox(
+                      //   height: 10,
+                      // ),
+
+
+                      MultiSelectDialogField<CountryModel>(
+                        items:filterModel!=null?
+
+                        filterModel!.countries!.map((e) => MultiSelectItem(e, e.name!,)).toList()
+                            : []   ,
+                        title: Text(tr("Countries"),style: GoogleFonts.tajawal(fontSize: 16,fontWeight: FontWeight.w500),),
+                        selectedColor: const Color(0xFF28B0A9),
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFf5f9f9),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                        suggestionsCallback: (pattern) async {
-                          return filterModel!.countries!
-                              .map((e) => e.name!)
-                              .toList()
-                              .where((item) => item
-                                  .toLowerCase()
-                                  .startsWith(pattern.toLowerCase()));
-                        },
-                        itemBuilder: (context, suggestion) {
-                          return ListTile(
-                            title: Text(suggestion),
-                          );
-                        },
-                        onSuggestionSelected: (suggestion) {
-                          setState(() {
-                            selectedOfficeBranch = suggestion;
-                            selectedOfficeBranchID = filterModel!.countries!
-                                .firstWhere(
-                                    (element) => element.name == suggestion)
-                                .id
-                                .toString();
-                            countryId = selectedOfficeBranchID!;
-                            selectedCityBranch = "";
-                            selectedCityBranchID="";
-                            getCityDataApi();
-                          });
-                        },
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      TypeAheadField<String>(
-                        textFieldConfiguration: TextFieldConfiguration(
-                          controller:
-                              TextEditingController(text: selectedCityBranch),
-                          autofocus: false,
-                          style: GoogleFonts.tajawal(
-                              color: Colors.black,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 15),
-                          decoration: InputDecoration(
-                            fillColor: const Color(0xFFf5f9f9),
-                            filled: true,
-                            hintStyle: GoogleFonts.tajawal(fontSize: 14),
-                            hintText: tr('ChooseTheCity'),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
-                              borderSide:
-                                  BorderSide(width: 1, color: klightGray),
-                            ),
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
-                              borderSide:
-                                  BorderSide(width: .7, color: klightGray),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
-                              borderSide: BorderSide(
-                                width: .7,
-                                color: klightGray,
-                              ),
-                            ),
-                            border: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                borderSide: BorderSide(
-                                  width: 1,
-                                )),
-                            errorBorder: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                borderSide:
-                                    BorderSide(width: 0.7, color: accentColor)),
-                            focusedErrorBorder: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                borderSide:
-                                    BorderSide(width: 0.7, color: accentColor)),
-                          ),
+                        buttonIcon: Icon(
+                          Icons.cabin,
+                          color: Colors.grey.shade500,
                         ),
-                        suggestionsCallback: (pattern) async {
-                          return cites.map((e) => e.name!).toList().where(
-                              (item) => item
-                                  .toLowerCase()
-                                  .startsWith(pattern.toLowerCase()));
-                        },
-                        itemBuilder: (context, suggestion) {
-                          return ListTile(
-                            title: Text(suggestion),
-                          );
-                        },
-                        onSuggestionSelected: (suggestion) {
+                        buttonText:  Text(
+                            tr("SelectCountries"),
+                            style:GoogleFonts.tajawal(fontWeight: FontWeight.w400,fontSize: 15)),
+                        backgroundColor: Colors.white,
+                        cancelText: Text(tr("Back"),style: GoogleFonts.tajawal(fontSize: 15,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9) ),),
+                        confirmText: Text(tr("Accept"),style: GoogleFonts.tajawal(fontSize: 15,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9))),
+                        searchable: true,
+                        searchHint: tr("SearchForACountry"),
+                        searchHintStyle: GoogleFonts.tajawal(fontSize: 15
+                            ,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9)),
+
+                        selectedItemsTextStyle:  GoogleFonts.tajawal(fontSize: 15
+                            ,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9)),
+                        dialogHeight: 500,
+
+                        listType: MultiSelectListType.LIST,
+                        onConfirm: (values) {
                           setState(() {
-                            selectedCityBranch = suggestion;
-                            selectedCityBranchID = cites
-                                .firstWhere(
-                                    (element) => element.name == suggestion)
-                                .id
-                                .toString();
+                            selectedCountryId=[];
                           });
+                          selectedCountry =  values;
+                          selectedCountryId=selectedCountry.map((e) => e.id.toString()).toList();
+                          print(selectedCountryId);
+                          getCityDataApi();
                         },
+                        onSelectionChanged: (p0) {
+                          getCityDataApi();
+                        },
+
+
+
+                      )
+                      ,
+                      const SizedBox(height: 20,),
+
+
+                      MultiSelectDialogField(
+                        items:cites.map((e) => MultiSelectItem(e, e.name!,)).toList(),
+                        title: Text(tr("cities"),style: GoogleFonts.tajawal(fontSize: 16,fontWeight: FontWeight.w500),),
+                        selectedColor: const Color(0xFF28B0A9),
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFf5f9f9),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        buttonIcon: Icon(
+                          Icons.location_city,
+                          color: Colors.grey.shade500,
+                        ),
+                        buttonText:  Text(
+                            tr("SelectCities"),
+                            style:GoogleFonts.tajawal(fontWeight: FontWeight.w400,fontSize: 15)),
+                        backgroundColor: Colors.white,
+                        // barrierColor: Colors.green,
+                        // checkColor: Colors.green,
+                        cancelText: Text(tr("Back"),style: GoogleFonts.tajawal(fontSize: 15,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9) ),),
+                        confirmText: Text(tr("Accept"),style: GoogleFonts.tajawal(fontSize: 15,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9))),
+                        searchable: true,
+                        searchHint: tr("SearchForACity"),
+                        searchHintStyle: GoogleFonts.tajawal(fontSize: 15
+                            ,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9)),
+
+                        selectedItemsTextStyle:  GoogleFonts.tajawal(fontSize: 15
+                            ,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9)),
+                        dialogHeight: 500,
+
+                        listType: MultiSelectListType.LIST,
+                        onConfirm: (values) {
+                          selectedCites = values;
+                          selectedCitesId=selectedCites.map((e) => e.id.toString()).toList();
+                          print(selectedCitesId);
+                        },
+
+
+
                       ),
+
+
                       const SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
+
+
                       Text(
                         tr("ChoosePackageType"),
                         style: const TextStyle(
@@ -857,8 +963,409 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
                         ],
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: 20,
                       ),
+
+
+                      Text(tr("OfferType"),style: GoogleFonts.tajawal(
+                        fontSize: 15,fontWeight: FontWeight.bold, ),),
+
+                      const SizedBox(
+                        height: 10,
+                      ),
+
+                      Row(children: [
+
+                        SizedBox(height: 40,
+                          child: Radio(
+                            value: 0,
+                            groupValue:type,
+                            activeColor: greenBlueIconColor,
+                            onChanged: (value) {
+                              setState(() {
+                                type=value;
+                                offerType="individual";
+                                print(offerType);
+                              });
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 10,),
+
+
+                        Text(tr(("individual")),style: GoogleFonts.tajawal(fontSize: 14,fontWeight: FontWeight.w500),)
+
+                      ],),
+
+                      Row(children: [
+
+                        SizedBox(height: 40,
+                          child: Radio(
+                            value: 1,
+                            groupValue:type,
+                            activeColor: greenBlueIconColor,
+                            onChanged: (value) {
+                              setState(() {
+                                type=value;
+                                offerType="group";
+                                print(offerType);
+                              });
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 10,),
+
+
+                        Text(tr("group"),style: GoogleFonts.tajawal(fontSize: 15,fontWeight: FontWeight.w500),)
+
+                      ],),
+                      type==1?
+                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(tr("EnterTheNumberOfGroupMembers"),style: GoogleFonts.tajawal(fontSize: 14,fontWeight: FontWeight.w400),),
+
+
+                          Card(elevation: 2,color: const Color(0xFFf5f9f9),
+                            child: Container(height: 40,width: 125,decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                              child:
+                              TextFormField(
+                                controller: numOfPersonControl,
+                                autovalidateMode: AutovalidateMode
+                                    .onUserInteraction,
+                                style: const TextStyle(fontSize: 15),
+                                decoration:  const InputDecoration(
+
+
+                                  errorStyle: TextStyle(fontSize: 9,
+                                      color: greenBlueIconColor),
+                                  contentPadding:
+                                  EdgeInsets.symmetric(
+                                      vertical: 10.0,
+                                      horizontal: 10.0),
+
+                                  filled: true,
+                                  fillColor: Color(0xFFf5f9f9),
+                                  focusedBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10)),
+
+                                  ),
+                                  disabledBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10)),
+
+                                  ),
+                                  enabledBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10)),
+
+                                  ),
+                                  border: OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10)),
+                                  ),
+                                  errorBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius:
+                                    BorderRadius.all(
+                                        Radius.circular(
+                                            10)),
+                                  ),
+                                  focusedErrorBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius:
+                                    BorderRadius.all(
+                                        Radius.circular(
+                                            10)),
+                                  ),
+                                  hintStyle: TextStyle(
+                                      fontSize: 13,
+                                      color: Color.fromRGBO(
+                                          196, 196, 196, 1)),
+                                ),
+                                onChanged: (value) {
+                                  if (value.isEmpty ||
+                                      !InputValidators()
+                                          .nameValidator(
+                                          name: value,
+                                          context: context)) {
+                                    setState(() {
+                                      isNumOfPerson = true;
+                                      numPerson = value;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      isNumOfPerson = false;
+                                      numPerson = value;
+                                    });
+                                  }
+                                },
+                                onSaved: (value) {
+                                  numPerson = value ?? "";
+                                },
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return tr("NumberOfPerson");
+                                  } else if (InputValidators()
+                                      .nameValidator(
+                                      name: value,
+                                      context: context)) {
+                                    return null;
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                cursorColor: Colors.black,
+                                keyboardType: TextInputType.number,
+                                textAlign: TextAlign.center,
+                              ),
+
+                            ),
+                          ),
+                        ],
+                      )
+                          : const SizedBox.shrink(),
+
+                      const SizedBox(
+                        height: 20,
+                      ),
+
+
+                      Text(tr("OfferPeriod"),style: GoogleFonts.tajawal(
+                        fontSize: 15,fontWeight: FontWeight.bold, ),),
+                      const SizedBox(
+                        height: 10,
+                      ),
+
+                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(tr(("TheNumberOfDays")),style: GoogleFonts.tajawal(fontSize: 14,fontWeight: FontWeight.w500),),
+
+
+                          Card(elevation: 2,color: const Color(0xFFf5f9f9),
+                            child: Container(height: 40,width: 125,decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                              child:
+                              TextFormField(
+                                controller: numOfDaysControl,
+                                autovalidateMode: AutovalidateMode
+                                    .onUserInteraction,
+                                style: const TextStyle(fontSize: 15),
+                                decoration:  const InputDecoration(
+
+
+                                  errorStyle: TextStyle(fontSize: 9,
+                                      color: greenBlueIconColor),
+                                  contentPadding:
+                                  EdgeInsets.symmetric(
+                                      vertical: 10.0,
+                                      horizontal: 10.0),
+
+                                  filled: true,
+                                  fillColor: Color(0xFFf5f9f9),
+                                  focusedBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10)),
+
+                                  ),
+                                  disabledBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10)),
+
+                                  ),
+                                  enabledBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10)),
+
+                                  ),
+                                  border: OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10)),
+                                  ),
+                                  errorBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius:
+                                    BorderRadius.all(
+                                        Radius.circular(
+                                            10)),
+                                  ),
+                                  focusedErrorBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius:
+                                    BorderRadius.all(
+                                        Radius.circular(
+                                            10)),
+                                  ),
+                                  hintStyle: TextStyle(
+                                      fontSize: 13,
+                                      color: Color.fromRGBO(
+                                          196, 196, 196, 1)),
+                                ),
+                                onChanged: (value) {
+                                  if (value.isEmpty ||
+                                      !InputValidators()
+                                          .nameValidator(
+                                          name: value,
+                                          context: context)) {
+                                    setState(() {
+                                      isNumOfDays = true;
+                                      numDays = value;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      isNumOfDays = false;
+                                      numDays = value;
+                                    });
+                                  }
+                                },
+                                onSaved: (value) {
+                                  numDays = value ?? "";
+                                },
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return tr("TheNumberOfDays");
+                                  } else if (InputValidators()
+                                      .nameValidator(
+                                      name: value,
+                                      context: context)) {
+                                    return null;
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                cursorColor: Colors.black,
+                                keyboardType: TextInputType.number,
+                                textAlign: TextAlign.center,
+                              ),
+
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+
+                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(tr(("TheNumberOfNights")),style: GoogleFonts.tajawal(fontSize: 14,fontWeight: FontWeight.w500),),
+
+
+
+                          Card(elevation: 2,color: const Color(0xFFf5f9f9),
+                            child: Container(height: 40,width: 125,decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                              child:
+                              TextFormField(
+                                controller: numOfNightsControl,
+                                autovalidateMode: AutovalidateMode
+                                    .onUserInteraction,
+                                style: const TextStyle(fontSize: 15),
+                                decoration:  const InputDecoration(
+
+
+                                  errorStyle: TextStyle(fontSize: 9,
+                                      color: greenBlueIconColor),
+                                  contentPadding:
+                                  EdgeInsets.symmetric(
+                                      vertical: 10.0,
+                                      horizontal: 10.0),
+
+                                  filled: true,
+                                  fillColor: Color(0xFFf5f9f9),
+                                  focusedBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10)),
+
+                                  ),
+                                  disabledBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10)),
+
+                                  ),
+                                  enabledBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10)),
+
+                                  ),
+                                  border: OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10)),
+                                  ),
+                                  errorBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius:
+                                    BorderRadius.all(
+                                        Radius.circular(
+                                            10)),
+                                  ),
+                                  focusedErrorBorder:
+                                  OutlineInputBorder(borderSide: BorderSide .none,
+                                    borderRadius:
+                                    BorderRadius.all(
+                                        Radius.circular(
+                                            10)),
+                                  ),
+                                  hintStyle: TextStyle(
+                                      fontSize: 13,
+                                      color: Color.fromRGBO(
+                                          196, 196, 196, 1)),
+                                ),
+                                onChanged: (value) {
+                                  if (value.isEmpty ||
+                                      !InputValidators()
+                                          .nameValidator(
+                                          name: value,
+                                          context: context)) {
+                                    setState(() {
+                                      isNumOfNights = true;
+                                      numNights = value;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      isNumOfNights = false;
+                                      numNights = value;
+                                    });
+                                  }
+                                },
+                                onSaved: (value) {
+                                  numNights = value ?? "";
+                                },
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return tr("TheNumberOfNights");
+                                  } else if (InputValidators()
+                                      .nameValidator(
+                                      name: value,
+                                      context: context)) {
+                                    return null;
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                cursorColor: Colors.black,
+                                keyboardType: TextInputType.number,
+                                textAlign: TextAlign.center,
+                              ),
+
+                            ),
+                          ),
+                        ],
+                      ),
+
+
+
+
                       const SizedBox(
                         height: 50,
                       ),
@@ -880,8 +1387,8 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
                 fixedSize: Size(size.width - 100, 55),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    side: const BorderSide(color: profile)),
-                backgroundColor: profile),
+                    side: const BorderSide(color: samaOfficeColor)),
+                backgroundColor: samaOfficeColor),
             onPressed: () {
               addOfferApiCall();
             },

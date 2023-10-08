@@ -27,7 +27,7 @@ abstract class VerifyCodeViewModel extends State<VrifyCode> with StorageHelper {
   static String phone = "";
   static String pageType = "0";
 
-  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 30;
+  int endTime = DateTime.now().millisecondsSinceEpoch + 1500 * 30;
   late CountdownTimerController controller =
       CountdownTimerController(endTime: endTime, onEnd: onEnd);
 

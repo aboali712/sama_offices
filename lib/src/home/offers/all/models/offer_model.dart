@@ -20,7 +20,8 @@ class OfferModel {
   String? descriptionAr;
   String? descriptionEn;
   int? countryId;
-  String? cities;
+  List<String>? countries_list;
+  List<String>? cities_list;
   int? cityId;
 
   String? fromCity;
@@ -31,6 +32,10 @@ class OfferModel {
   String? endDate;
   int? numOfDays;
   List<ImagesModel>? images;
+  String? offer_type;
+  int? num_of_persons;
+  int? num_of_nights;
+  int? num_of_reserved_persons;
 
 
   OfferModel(
@@ -51,14 +56,14 @@ class OfferModel {
         this.nameEn,
         this.description,
         this.countryId,
-        this.cities,
+         this.cities_list, this.countries_list,
         this.fromCity,
         this.toCity,
         this.priceBefore,
         this.priceAfter,
         this.startDate,
         this.endDate,
-        this.numOfDays});
+        this.numOfDays,this.offer_type,this.num_of_persons,this.num_of_nights,this.num_of_reserved_persons});
 
   OfferModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -82,7 +87,8 @@ class OfferModel {
     countryId = json['country_id'];
     cityId = json['city_id'];
 
-    cities = json['cities'];
+    cities_list = json['cities_list'].cast<String>();
+    countries_list = json['countries_list'].cast<String>();
     fromCity = json['from_city'];
     toCity = json['to_city'];
     priceBefore = json['price_before'];
@@ -96,6 +102,12 @@ class OfferModel {
         images!.add(ImagesModel.fromJson(v));
       });
     }
+    offer_type = json['offer_type'];
+    num_of_persons = json['num_of_persons'];
+    num_of_nights = json['num_of_nights'];
+    num_of_reserved_persons = json['num_of_reserved_persons'];
+
+
   }
 
   Map<String, dynamic> toJson() {
@@ -119,7 +131,8 @@ class OfferModel {
     data['country_id'] = this.countryId;
     data['city_id'] = this.cityId;
 
-    data['cities'] = this.cities;
+    data['countries_list'] = this.countries_list;
+    data['cities_list'] = this.cities_list;
     data['from_city'] = this.fromCity;
     data['to_city'] = this.toCity;
     data['is_favourite'] = this.is_favourite;
@@ -132,6 +145,13 @@ class OfferModel {
     if (this.images != null) {
       data['images'] = this.images!.map((v) => v.toJson()).toList();
     }
+    data['offer_type'] = this.offer_type;
+    data['num_of_persons'] = this.num_of_persons;
+    data['num_of_nights'] = this.num_of_nights;
+    data['num_of_reserved_persons'] = this.num_of_reserved_persons;
+
+
+
     return data;
   }
 }

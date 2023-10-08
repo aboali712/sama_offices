@@ -9,7 +9,7 @@ import '../../../core/cash/storage.helper.dart';
 import '../../../core/values/colors.dart';
 import '../../../core/values/dimens.dart';
 import '../../../main.dart';
-import '../../start/splash/splash.dart';
+import '../../auth/login/loginPage.dart';
 import '../home_core.dart';
 import 'model/SettingsResponse.dart';
 import 'model/setting_model.dart';
@@ -40,7 +40,7 @@ abstract class MoreViewModelPage extends State<MorePageScreen>
           await saveToken(""),
           await Future.delayed(const Duration(seconds: 1)),
           SamaOfficesApp.navKey.currentState!
-              .push(MaterialPageRoute(builder: (context) => const SplashView()))
+              .pushReplacement(MaterialPageRoute(builder: (context) => const LoginPage()))
         });
   }
 
@@ -214,14 +214,14 @@ abstract class MoreViewModelPage extends State<MorePageScreen>
                       ),
                     ),
                     const SizedBox(
-                      height: 50,
+                      height: 30,
                     ),
                     TextButton(
                         style: TextButton.styleFrom(
-                            backgroundColor: yellowColor,
+                            backgroundColor: samaOfficeColor,
                             fixedSize: const Size(300, 50),
                             shape: RoundedRectangleBorder(
-                              side: const BorderSide(color: yellowColor),
+                              side: const BorderSide(color: samaOfficeColor),
                               borderRadius: BorderRadius.circular(15),
                             )),
                         onPressed: () async {
@@ -232,9 +232,9 @@ abstract class MoreViewModelPage extends State<MorePageScreen>
                           );
                         },
                         child: Text(
-                          "متابعة",
+                          "tracking".tr(),
                           style: GoogleFonts.tajawal(
-                              color: Colors.black,
+                              color: Colors.white,
                               fontSize: fontText,
                               fontWeight: FontWeight.w500),
                         ))

@@ -72,8 +72,9 @@ abstract class SignUpViewModel extends State<SignUpPage> with StorageHelper{
   bool isValidationSubscriptionPlan=false;
   String subscriptionPlan="";
 
-
-
+  TextEditingController hourTimeControl = TextEditingController();
+  TextEditingController timeInControl = TextEditingController();
+  TextEditingController timeOutControl = TextEditingController();
 
 
   late List<FilterModel> items = [];
@@ -166,8 +167,12 @@ abstract class SignUpViewModel extends State<SignUpPage> with StorageHelper{
       toastApp(tr("EnterTheAddress"),context);
       return false;
     }
-    if(timeBranch==""){
-      toastApp(tr("EnterBusinessHours"),context);
+    if(timeInControl.value.text==""){
+      toastApp(tr("EnterTheOfficeOpeningTime"),context);
+      return false;
+    }
+    if(timeOutControl.value.text==""){
+      toastApp(tr("EnterTheOfficeClosingTime"),context);
       return false;
     }
     if(imageOffice==null){
@@ -203,16 +208,11 @@ abstract class SignUpViewModel extends State<SignUpPage> with StorageHelper{
       return false;
     }
 
-
-
     return true;
   }
 
 
   Future<void> getSettingsDataApi() async {
-
-
-
     final response = await dio.get("v1/settings");
 
     var rs = SettingsResponse(response.data!);
@@ -265,7 +265,9 @@ abstract class SignUpViewModel extends State<SignUpPage> with StorageHelper{
     mp["bank_name"]=bankName;
     mp["bank_account"]=accountNumber;
     mp["iban"]=iBANNumber;
-    mp["working_hours"]=timeBranch;
+    mp["working_hours"]=hourTimeControl.value.text;
+    mp["start_work_at"]=timeInControl.value.text;
+    mp["end_work_at"]=timeOutControl.value.text;
 
 
 
@@ -311,8 +313,6 @@ await Future.delayed(const Duration(seconds: 2));
   Future<void> getFilterDataApi() async {
     Map<String, String> mp = {};
 
-
-
     final response = await dio.get("v1/filter", queryParameters: mp);
 
     var rs = FilterResponse(response.data!);
@@ -328,7 +328,6 @@ await Future.delayed(const Duration(seconds: 2));
   Future<void> getCityDataApi() async {
     Map<String, String> mp = {};
       mp["country_id"]=countryId;
-
 
     final response = await dio.get("v1/cities", queryParameters: mp);
 

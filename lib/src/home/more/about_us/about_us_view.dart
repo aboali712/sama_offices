@@ -33,13 +33,31 @@ class _AboutUsState extends AboutUsViewModel {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                  )),
+              InkWell( onTap: () {
+                Navigator.pop(context);
+              },
+                child: Row(
+                  children: [
+                    SizedBox(width: 10,
+                      child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Icon(
+                            Icons.arrow_back_ios,
+                          )),
+                    ),
+                    const SizedBox(width: 10,),
+
+                    SvgPicture.asset(
+                      "assets/images/logo.svg",height: 20,width: 20,
+
+                    ),
+                  ],
+                ),
+              ),
+
+
               Text(
                   MoreViewModelPage.typePage == "0"
                       ? tr("AboutUs")
@@ -52,7 +70,7 @@ class _AboutUsState extends AboutUsViewModel {
                   style: GoogleFonts.tajawal(
                       fontWeight: FontWeight.bold,  fontSize: Platform.isIOS ? 18 : 15)),
               const SizedBox(
-                width: 25,
+                width: 80,
               ),
             ],
           ),

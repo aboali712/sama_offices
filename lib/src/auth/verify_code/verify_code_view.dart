@@ -26,7 +26,7 @@ class _VrifyCodeState extends VerifyCodeViewModel {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: samaColor,
+        statusBarColor: samaOfficeColor,
         /* set Status bar color in Android devices. */
         statusBarIconBrightness: Brightness.dark,
         /* set Status bar icons color in Android devices.*/
@@ -42,7 +42,7 @@ class _VrifyCodeState extends VerifyCodeViewModel {
           Container(
             width: size.width,
             height: size.height / 3,
-            color: yellowColor,
+            color: samaOfficeColor,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
@@ -60,7 +60,7 @@ class _VrifyCodeState extends VerifyCodeViewModel {
                   },
                     child: const Icon(
                       Icons.arrow_back,
-                      color: Colors.black,
+                      color: Colors.white,
                       size: 20,
                     ),
                   ),
@@ -69,7 +69,7 @@ class _VrifyCodeState extends VerifyCodeViewModel {
                   Text(
                     tr("MobileNumberVerification"),
                     style: GoogleFonts.tajawal(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.w500,
                         fontSize: 18),
                     textAlign: TextAlign.center,
@@ -80,7 +80,7 @@ class _VrifyCodeState extends VerifyCodeViewModel {
                   Text(
                     tr("PleaseWriteTheCodeThatWeSentToYourMobileNumber"),
                     style: GoogleFonts.tajawal(
-                        color: Colors.black54,
+                        color: Colors.white70,
                         fontWeight: FontWeight.w500,
                         fontSize: 15),
                     textAlign: TextAlign.start,
@@ -108,6 +108,7 @@ class _VrifyCodeState extends VerifyCodeViewModel {
                           'assets/images/login_logo.svg',
                           width: 100,
                           height: 100,
+                          color:samaOfficeColor ,
                         ),
                       ),
                       const SizedBox(height: 50,),
@@ -216,8 +217,8 @@ class _VrifyCodeState extends VerifyCodeViewModel {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                   side: const BorderSide(
-                                      color: yellowColor)),
-                              backgroundColor: yellowColor),
+                                      color: samaOfficeColor)),
+                              backgroundColor: samaOfficeColor),
                           onPressed: () {
                             goToHomePage();
                           },
@@ -226,7 +227,7 @@ class _VrifyCodeState extends VerifyCodeViewModel {
                             style: GoogleFonts.tajawal(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black),
+                                color: Colors.white),
                           )),
 
                ] ),

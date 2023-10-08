@@ -10,6 +10,7 @@ const Color orange = Color(0xFFF15E31);
 
 const Color samaColor = Color(0xFF1D405C);
 const Color saraBorder = Color(0xFF000000);
+const Color samaOfficeColor = Color(0xFF28B0A9);
 
 
 const Color darkIndigo = Color(0xFF0E1740);

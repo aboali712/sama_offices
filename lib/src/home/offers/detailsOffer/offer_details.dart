@@ -41,6 +41,7 @@ class _OfferDetailsPageState extends OfferDetailsViewModel {
                 value: SystemUiOverlayStyle.dark,
                 child: Stack(
                   children: [
+
                  offerDetailsModel != null
                  ?   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,9 +118,28 @@ class _OfferDetailsPageState extends OfferDetailsViewModel {
                                             ),
                                           )),
                                     ),
-                                    const SizedBox(
-                                      width: 56,
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      margin: const EdgeInsets.all(5),
+                                      decoration: BoxDecoration(
+                                          color: yellowColor,
+                                          borderRadius: BorderRadius.circular(8)),
+                                      child: Center(
+                                        child: Text(
+                                          offerDetailsModel!
+                                              .offerDetails!.offer_type=="group"
+
+                                              ? tr("group")
+                                              : tr("individual"),
+                                          style: TextStyle(
+                                              fontSize: Platform.isIOS ? 18 : 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
+                                        ),
+                                      ),
                                     ),
+
+
 
                                   ],
                                 ),
@@ -138,8 +158,8 @@ class _OfferDetailsPageState extends OfferDetailsViewModel {
                                     offerDetailsModel!
                                                 .offerDetails!.numOfDays! >
                                             10
-                                        ? "${offerDetailsModel!.offerDetails!.numOfDays!} ${tr("Day")}"
-                                        : "${offerDetailsModel!.offerDetails!.numOfDays!} ${tr("Days")}",
+                                        ? "${offerDetailsModel!.offerDetails!.num_of_nights??""} ${tr("night")}"
+                                        : "${offerDetailsModel!.offerDetails!.num_of_nights??""} ${tr("nights")}",
                                     style: TextStyle(
                                         fontSize: Platform.isIOS ? 18 : 16,
                                         fontWeight: FontWeight.bold,
@@ -172,6 +192,53 @@ class _OfferDetailsPageState extends OfferDetailsViewModel {
                         const SizedBox(
                           height: 20,
                         ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10,right: 10),
+                          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                tr("${tr("TotalNumberOfPeople")} : ${offerDetailsModel!.offerDetails!.num_of_persons!=null? offerDetailsModel!.offerDetails!.num_of_persons??"" :0}"),
+                                style: TextStyle(
+                                    fontSize: Platform.isIOS ? 17 : 15,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black),
+                              ),
+
+
+                              Text(
+                                    tr("${tr("numOfReservedPersons")} : ${offerDetailsModel!.offerDetails!.num_of_reserved_persons??""}"),
+                                style: TextStyle(
+                                    fontSize: Platform.isIOS ? 17 : 15,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black),
+                              ),
+                              offerDetailsModel!.offerDetails!.num_of_persons!=null?
+
+                              Builder(
+                                builder: (context) {
+                       var result= offerDetailsModel!.offerDetails!.num_of_persons!-
+                           int.parse(offerDetailsModel!.offerDetails!.num_of_reserved_persons.toString()??"");
+                                  
+                                  return Text(
+                                    tr("${tr("TheRemainingNumber")} : $result "),
+                                    style: TextStyle(
+                                        fontSize: Platform.isIOS ? 17 : 15,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black),
+                                  );
+                                }
+                              )
+                              :const SizedBox.shrink()
+                              ,
+
+
+
+                            ],
+                          ),
+                        ),
+
+
                         Expanded(
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -254,7 +321,7 @@ class _OfferDetailsPageState extends OfferDetailsViewModel {
                                                     fit: BoxFit.cover,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.all(
+                                                      const BorderRadius.all(
                                                           Radius.circular(
                                                               40.0)),
                                                   border: Border.all(
@@ -338,6 +405,8 @@ class _OfferDetailsPageState extends OfferDetailsViewModel {
                       ],
                     )
                     : const Center(child: CircularProgressIndicator(),),
+
+
                     Align(
                       alignment: AlignmentDirectional.bottomCenter,
                       child: Container(
@@ -350,7 +419,7 @@ class _OfferDetailsPageState extends OfferDetailsViewModel {
                                     fixedSize:  Size(size.width/2-20, 55),
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10)),
-                                    backgroundColor: yellowColor),
+                                    backgroundColor: samaOfficeColor),
                                 onPressed: () {
                                   SamaOfficesApp.navKey.currentState!.push(
                                       MaterialPageRoute(

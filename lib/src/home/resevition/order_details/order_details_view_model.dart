@@ -16,6 +16,7 @@ abstract class OrderDetailsViewModel extends State<OrderDetails> with StorageHel
    List listStatues= [tr("Pending"),tr("Accepted"),tr("Reviewing"),tr("Processing"),tr("Completed"),tr("Cancelled") ];
    String selectStatus="";
    bool isLoading=false;
+   String? lang;
 
 
   @override
@@ -26,6 +27,10 @@ abstract class OrderDetailsViewModel extends State<OrderDetails> with StorageHel
          :  bookingsModelDetails.status=="inReview" ? tr("Reviewing") :  bookingsModelDetails.status=="processing" ? tr("Processing")
          :  bookingsModelDetails.status=="completed" ? tr("Completed") :  tr("Cancelled");
    });
+   getLang().then((value) => setState(() {
+     lang=value;
+   }));
+
     super.initState();
   }
 

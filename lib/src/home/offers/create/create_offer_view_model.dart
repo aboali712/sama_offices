@@ -2,8 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:multi_select_flutter/dialog/mult_select_dialog.dart';
+import 'package:multi_select_flutter/util/multi_select_item.dart';
 import 'package:sama_offices/app.dart';
 import 'package:sama_offices/core/utils/helper_manager.dart';
 import 'package:sama_offices/src/auth/auth_model/empty_response.dart';
@@ -13,6 +16,7 @@ import '../../../../core/widget/calender_dialog.dart';
 import '../../../../main.dart';
 import '../../../auth/signup/all_filter/cities_model.dart';
 import '../../../auth/signup/all_filter/city_response.dart';
+import '../../../auth/signup/all_filter/country_model.dart';
 import '../../../auth/signup/all_filter/filter_model.dart';
 import '../../../auth/signup/all_filter/filter_response.dart';
 import 'create_offer.dart';
@@ -41,6 +45,12 @@ abstract class CreateOfferPageViewModel extends  State<CreateOfferPage>   with S
 
   String countryId="";
   List<CityModel> cites =[];
+
+  List<CountryModel> selectedCountry =[];
+  List<String> selectedCountryId =[];
+  List<CityModel> selectedCites =[];
+  List<String> selectedCitesId =[];
+
   FilterModel? filterModel;
   List listStatues= [tr("Normal"),tr("Weekend")];
   String selectStatus=tr("Normal");
@@ -57,6 +67,21 @@ abstract class CreateOfferPageViewModel extends  State<CreateOfferPage>   with S
   List<XFile>? images;
   var detailsAr="";
   var detailsEn="";
+
+  int? type;
+  String offerType="";
+  TextEditingController numOfPersonControl=TextEditingController();
+  bool isNumOfPerson=false;
+  String numPerson="";
+
+  TextEditingController numOfDaysControl=TextEditingController();
+  bool isNumOfDays=false;
+  String numDays="";
+
+
+  TextEditingController numOfNightsControl=TextEditingController();
+  bool isNumOfNights=false;
+  String numNights="";
 
   @override
   void initState() {
@@ -100,30 +125,22 @@ abstract class CreateOfferPageViewModel extends  State<CreateOfferPage>   with S
     if (rs.status == 200) {
       setState(() {
         filterModel = rs.data;
-
       });
     }
 
   }
   Future<void> getCityDataApi() async {
     Map<String, String> mp = {};
-    mp["country_id"]=countryId;
+    selectedCountryId.asMap().forEach((index, value) =>  mp["countries[$index]"] = value);
 
+      final response = await dio.get("v1/citiesByCountries",queryParameters: mp );
 
-    final response = await dio.get("v1/cities", queryParameters: mp);
-
-    var rs = CitiesResponse(response.data!);
-    if (rs.status == 200) {
-      setState(() {
-
-        cites = rs.data!;
-
-
-
-
-      });
-    }
-
+      var rs = CitiesResponse(response.data!);
+      if (rs.status == 200) {
+        setState(() {
+          cites = rs.data!;
+        });
+      }
   }
 
   Future<void> addOfferApiCall() async {
@@ -147,8 +164,18 @@ abstract class CreateOfferPageViewModel extends  State<CreateOfferPage>   with S
       mp["price_before"]=priceBeforeController.value.text.toString();
       mp["start_date"]=startSelectedDate;
       mp["end_date"]=endSelectedDate;
+      selectedCountryId.asMap().forEach((index, value) =>  mp["countries[$index]"] = value);
+      selectedCitesId.asMap().forEach((index, value) =>  mp["cities[$index]"] = value);
 
-       images?.asMap().forEach((index, element) async {
+      mp["offer_type"]=offerType;
+      mp["num_of_persons"]=offerType=="group"? numOfPersonControl.value.text: 1;
+      mp["num_of_days"]=numOfDaysControl.value.text;
+      mp["num_of_nights"]=numOfNightsControl.value.text;
+
+
+
+
+      images?.asMap().forEach((index, element) async {
          mp["images[$index]"]=
              await MultipartFile.fromFile(element.path, filename:element.path.split('/').last);
       });
@@ -194,11 +221,11 @@ abstract class CreateOfferPageViewModel extends  State<CreateOfferPage>   with S
       toastApp(tr("DescriptionEn"), context);
       return false;
     }
-    else if(countryId==""){
+    else if(selectedCountryId.isEmpty){
       toastApp(tr("ChooseCountry"), context);
       return false;
     }
-    else if(selectedCityBranchID==""){
+    else if(selectedCitesId.isEmpty){
       toastApp(tr("ChooseTheCity"), context);
       return false;
     }
@@ -219,17 +246,42 @@ abstract class CreateOfferPageViewModel extends  State<CreateOfferPage>   with S
       toastApp(tr("MainImage"), context);
       return false;
     }
-    if(images!.isEmpty){
+    if(images==null){
       toastApp(tr("OtherImages"), context);
+      return false;
+    }
+
+    if(offerType==""){
+      toastApp(tr("ChooseTheOfferType"), context);
+      return false;
+    }
+    if(offerType=="group"){
+      if(numOfPersonControl.text==""){
+        toastApp(tr("EnterTheNumberOfGroupMembers"), context);
+        return false;
+      }
+
+
+    }
+    if(numDays==""){
+      toastApp(tr("TheNumberOfDays"), context);
+      return false;
+    }
+    if(numNights==""){
+      toastApp(tr("TheNumberOfNights"), context);
       return false;
     }
 
 
 
-
-
     return true;
   }
+
+
+
+
+
+
 
 
 

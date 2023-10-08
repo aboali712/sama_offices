@@ -15,6 +15,7 @@ import '../../../core/values/colors.dart';
 import '../../../core/widget/TextWidget.dart';
 import '../../auth/login/loginPage.dart';
 import '../home_core.dart';
+import '../resevition/reservation_view_model.dart';
 import 'about_us/about_us_view.dart';
 import 'contact_us/contact_us_view.dart';
 import 'more_view_model_page.dart';
@@ -31,13 +32,13 @@ class _MorePageScreenState extends MoreViewModelPage {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-            statusBarColor: Colors.white,
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+            statusBarColor: samaOfficeColor,
             /* set Status bar color in Android devices. */
-            statusBarIconBrightness: Brightness.dark,
+            statusBarIconBrightness: Brightness.light,
             /* set Status bar icons color in Android devices.*/
             statusBarBrightness:
-                Brightness.dark) /* set Status bar icon color in iOS. */
+                Brightness.light) /* set Status bar icon color in iOS. */
         );
     return Scaffold(
         backgroundColor: Colors.white,
@@ -46,7 +47,7 @@ class _MorePageScreenState extends MoreViewModelPage {
             child: Column(
               children: [
                 Container(
-                  color: yellowColor,
+                  color: samaOfficeColor,
                   width: size.width,
                   height: 100,
                   padding: const EdgeInsets.only(top: 60),
@@ -54,7 +55,7 @@ class _MorePageScreenState extends MoreViewModelPage {
                       title: "More".tr(),
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: AppColors.black,
+                      color: AppColors.white,
                       textAlign: TextAlign.center),
 
                 ),
@@ -165,43 +166,36 @@ class _MorePageScreenState extends MoreViewModelPage {
                                         const SizedBox(
                                           height: 10,
                                         ),
-                                        // InkWell(
-                                        //   onTap: (){
-                                        //     SamaOfficesApp.navKey.currentState!.push(
-                                        //       MaterialPageRoute(builder: (context) => const UpdateProfile()),
-                                        //     );
-                                        //   },
-                                        //   child: Container(
-                                        //     width: (size.width),
-                                        //     padding: const EdgeInsets.all(10),
-                                        //     height: 55,
-                                        //     decoration: BoxDecoration(
-                                        //         borderRadius: BorderRadius.circular(15),
-                                        //         color: Colors.white),
-                                        //     child: Row(
-                                        //       mainAxisAlignment:
-                                        //           MainAxisAlignment.spaceBetween,
-                                        //       children: [
-                                        //         Row(
-                                        //           children: [
-                                        //             const Icon(
-                                        //                 Icons.person_outline_outlined),
-                                        //             const SizedBox(
-                                        //               width: 10,
-                                        //             ),
-                                        //             TextWidget(
-                                        //                 title: "MyAccount".tr(),
-                                        //                 fontSize: 14,
-                                        //                 fontWeight: FontWeight.bold,
-                                        //                 color: const Color(0XFF2C3341),
-                                        //                 textAlign: TextAlign.center),
-                                        //           ],
-                                        //         ),
-                                        //         const Icon(Icons.arrow_forward_ios)
-                                        //       ],
-                                        //     ),
-                                        //   ),
-                                        // ),
+
+                                        ReservationsViewModel.profileModel!=null?
+                                        Container(
+                                          width: (size.width),
+                                          padding: const EdgeInsets.all(10),
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(15),
+                                              color: Colors.white),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              TextWidget(
+                                                  title: "SubscriptionExpiryDate".tr(),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: const Color(0XFF2C3341),
+                                                  textAlign: TextAlign.center),
+
+                                              TextWidget(
+                                                  title: ReservationsViewModel.profileModel!.office!.subscription_end_date.toString(),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: const Color(0XFF2C3341),
+                                                  textAlign: TextAlign.center),
+                                            ],
+                                          ),
+                                        )
+                                        : const SizedBox.shrink() ,
                                         const SizedBox(
                                           height: 5,
                                         ),
@@ -218,6 +212,45 @@ class _MorePageScreenState extends MoreViewModelPage {
                                 fontWeight: FontWeight.bold,
                                 color: const Color(0XFF9FA3B2),
                                 textAlign: TextAlign.center),
+
+                            InkWell(
+                              onTap: (){
+                                SamaOfficesApp.navKey.currentState!.push(
+                                  MaterialPageRoute(builder: (context) => const UpdateProfile()),
+                                );
+                              },
+                              child: Container(
+                                width: (size.width),
+                                padding: const EdgeInsets.all(10),
+                                height: 55,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: const Color(0XFFF5F9F9)),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                            Icons.person_outline_outlined),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        TextWidget(
+                                            title: "accountDetails".tr(),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: const Color(0XFF2C3341),
+                                            textAlign: TextAlign.center),
+                                      ],
+                                    ),
+                                    const Icon(Icons.arrow_forward_ios)
+                                  ],
+                                ),
+                              ),
+                            ),
+
                             const SizedBox(
                               height: 5,
                             ),
@@ -517,10 +550,10 @@ class _MorePageScreenState extends MoreViewModelPage {
                                           fixedSize: Size(size.width, 55),
                                           shape: RoundedRectangleBorder(
                                             side:
-                                                const BorderSide(color: profile),
+                                                const BorderSide(color: samaOfficeColor),
                                             borderRadius: BorderRadius.circular(10),
                                           ),
-                                          backgroundColor: profile),
+                                          backgroundColor: samaOfficeColor),
                                       onPressed: () {
                                         logoutApp();
                                       },

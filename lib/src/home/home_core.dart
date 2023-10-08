@@ -63,7 +63,7 @@ class HomeCorePage extends State<HomeCore> with StorageHelper {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-            statusBarColor: yellowColor,
+            statusBarColor: samaOfficeColor,
             /* set Status bar color in Android devices. */
             statusBarIconBrightness: Brightness.dark,
             /* set Status bar icons color in Android devices.*/

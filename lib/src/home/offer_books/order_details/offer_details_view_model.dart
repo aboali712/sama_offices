@@ -16,7 +16,7 @@ abstract class OrderOfferDetailsViewModel extends State<OrderOfferDetails> with 
    List listStatues= [tr("Pending"),tr("Reviewing"),tr("Accepted"),tr("PendingPaymentً"),tr("Processing"),tr("Completed"),tr("Cancelled") ];
    String selectStatus="";
    bool isLoading=false;
-
+String? lang;
 
   @override
   void initState() {
@@ -26,6 +26,11 @@ abstract class OrderOfferDetailsViewModel extends State<OrderOfferDetails> with 
          :  bookingsModelDetails.status=="inReview" ? tr("Reviewing") :  bookingsModelDetails.status=="processing" ? tr("Processing")
          :  bookingsModelDetails.status=="completed" ? tr("Completed")  :  bookingsModelDetails.status=="waiting_for_pay" ? tr("PendingPaymentً"):  tr("Cancelled");
    });
+   getLang().then((value) => setState(() {
+     lang=value;
+   }));
+
+
     super.initState();
   }
 

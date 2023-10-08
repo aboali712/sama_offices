@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,7 +29,7 @@ class _OffersPageState extends OffersPageViewModel {
     Size size = MediaQuery.of(context).size;
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: yellowColor,
+        statusBarColor: samaOfficeColor,
         /* set Status bar color in Android devices. */
         statusBarIconBrightness: Brightness.dark,
         /* set Status bar icons color in Android devices.*/
@@ -38,7 +40,7 @@ class _OffersPageState extends OffersPageViewModel {
           Column(
             children: [
               Container(
-                color: yellowColor,
+                color: samaOfficeColor,
                 height: 100,
                 alignment: AlignmentDirectional.topCenter,
                 padding: const EdgeInsets.only(top: 60),
@@ -111,20 +113,17 @@ class _OffersPageState extends OffersPageViewModel {
                                                     .circular(
                                                     8)),
                                             child: Center(
-                                              child: Text(
+                                              child:    Text(
                                                 offer.numOfDays! >
                                                     10
-                                                    ? "${offer.numOfDays!} ${tr("Day")}"
-                                                    : "${offer.numOfDays!} ${tr("Days")}",
-                                                style: const TextStyle(
-                                                    fontSize:
-                                                    13,
-                                                    fontWeight:
-                                                    FontWeight
-                                                        .bold,
-                                                    color: Colors
-                                                        .black),
+                                                    ? "${offer.num_of_nights??""} ${tr("night")}"
+                                                    : "${offer.num_of_nights??""} ${tr("nights")}",
+                                                style: TextStyle(
+                                                    fontSize: Platform.isIOS ? 18 : 16,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black),
                                               ),
+
                                             ),
                                           ),
                                         ],
@@ -134,7 +133,6 @@ class _OffersPageState extends OffersPageViewModel {
                                   offer.is_vip.toString()=="1"
                                       ?  Align(
                                     alignment: AlignmentDirectional.bottomEnd,
-
                                     child: Container(
                                       width: 70,
                                       height: 70,
@@ -271,7 +269,7 @@ class _OffersPageState extends OffersPageViewModel {
            )
               : const SizedBox.shrink(),
 
-              const SizedBox(height: 100,),
+              const SizedBox(height: 60,),
             ],
           ),
 
@@ -300,20 +298,20 @@ class _OffersPageState extends OffersPageViewModel {
           :const SizedBox.shrink(),
 
           Positioned(
-           bottom: 50,
+           bottom: 10,
             left: 50,
             right: 50,
 
             child:  Center(
               child: TextButton(
                   style: TextButton.styleFrom(
-                      fixedSize: Size(size.width, 55),
+                      fixedSize: Size(size.width, 50),
                       shape: RoundedRectangleBorder(
                           borderRadius:
                           BorderRadius.circular(10.0),
                           side: const BorderSide(
-                              color: profile)),
-                      backgroundColor: profile),
+                              color: samaOfficeColor)),
+                      backgroundColor: samaOfficeColor),
                   onPressed: () {
                     SamaOfficesApp
                         .navKey.currentState!

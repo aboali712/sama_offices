@@ -52,21 +52,39 @@ class _ContactUsState extends ContactUsViewModel {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.black,
-                      )),
+                  InkWell( onTap: () {
+                    Navigator.pop(context);
+                  },
+                    child: Row(
+                      children: [
+                        SizedBox(width: 10,
+                          child: InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.black,
+                              )),
+                        ),
+                        const SizedBox(width: 10,),
+
+                        SvgPicture.asset(
+                          "assets/images/logo.svg",height: 20,width: 20,
+
+                        ),
+
+
+                      ],
+                    ),
+                  ),
                   Text(tr("ConnectUs"),
                       style: GoogleFonts.tajawal(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                           color: Colors.black)),
                   const SizedBox(
-                    width: 25,
+                    width: 50,
                   ),
                 ],
               ),
@@ -99,9 +117,9 @@ class _ContactUsState extends ContactUsViewModel {
                       Container(
                         width: (size.width),
                         padding: const EdgeInsets.all(10),
-                        height: 100,
+                        height: 90,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             InkWell(
                               onTap: (){
@@ -110,7 +128,7 @@ class _ContactUsState extends ContactUsViewModel {
                               },
                               child: Container(
                                 width: (size.width / 2) - 30,
-                                padding: const EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(5),
                                 height: 100,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
@@ -123,27 +141,28 @@ class _ContactUsState extends ContactUsViewModel {
                                       color: Colors.black,
                                     ),
                                     const SizedBox(
-                                      width: 10,
+                                      width: 5,
                                     ),
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           tr("Phone"),
                                           style: GoogleFonts.tajawal(
                                               color: samaColor,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 15),
+                                              fontSize: 13),
                                         ),
                                         const SizedBox(
                                           height: 5,
                                         ),
                                         Text(
-                                          MoreViewModelPage.settingsModel!.phone!,
+                                          MoreViewModelPage.settingsModel!.phone!??"",
                                           style: GoogleFonts.tajawal(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 15),
+                                              fontSize: 13),
                                         ),
                                       ],
                                     )
@@ -151,14 +170,15 @@ class _ContactUsState extends ContactUsViewModel {
                                 ),
                               ),
                             ),
+                            const SizedBox(width: 10,),
                             InkWell(
                               onTap: (){
                                 launchUrl(Uri.parse(
                                     "mailto:${MoreViewModelPage.settingsModel!.email!}"));
                               },
                               child: Container(
-                                width: (size.width / 2) - 30,
-                                padding: const EdgeInsets.all(10),
+                                width: (size.width / 2) -30,
+                                padding: const EdgeInsets.all(5),
                                 height: 100,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
@@ -170,17 +190,19 @@ class _ContactUsState extends ContactUsViewModel {
                                       color: Colors.black,
                                     ),
                                     const SizedBox(
-                                      width: 10,
+                                      width: 5,
                                     ),
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+
                                       children: [
                                         Text(
                                           tr("E-mail"),
                                           style: GoogleFonts.tajawal(
                                               color: samaColor,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 15),
+                                              fontSize: 13),
                                         ),
                                         const SizedBox(
                                           height: 5,
@@ -190,7 +212,7 @@ class _ContactUsState extends ContactUsViewModel {
                                           style: GoogleFonts.tajawal(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 15),
+                                              fontSize: 13),
                                         ),
                                       ],
                                     )
@@ -334,10 +356,10 @@ class _ContactUsState extends ContactUsViewModel {
                           style: TextButton.styleFrom(
                               fixedSize: Size(size.width, 55),
                               shape: RoundedRectangleBorder(
-                                side: const BorderSide(color: yellowColor),
+                                side: const BorderSide(color: samaOfficeColor),
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              backgroundColor: yellowColor),
+                              backgroundColor: samaOfficeColor),
                           onPressed: () {
                             getSettingsDataApi();
                           },
@@ -354,7 +376,7 @@ class _ContactUsState extends ContactUsViewModel {
                               Text(
                                 tr("Send"),
                                 style: const TextStyle(
-                                    color: samaColor,
+                                    color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15),
                               ),

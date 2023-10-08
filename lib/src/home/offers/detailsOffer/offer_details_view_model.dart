@@ -62,13 +62,13 @@ abstract class OfferDetailsViewModel extends State<OfferDetailsPage> with Storag
     mp["offer_id"] = offerId;
 
 
-    final response = await dio.get("v1/offerDetails", queryParameters: mp);
+    final response = await dio.get("v1/office/offerDetails", queryParameters: mp);
 
     var rs = OffersDetailsResponse(response.data!);
     if (rs.status == 200) {
       setState(() {
         offerDetailsModel = rs.data;
-       index= offerDetailsModel!.offerDetails!.status=="active" ? 0: 1 ;
+        index= offerDetailsModel!.offerDetails!.status=="active" ? 0: 1 ;
 
       });
     }

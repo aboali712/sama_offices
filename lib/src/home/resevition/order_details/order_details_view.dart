@@ -7,6 +7,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sama_offices/app.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -28,7 +29,7 @@ class _OrderDetailsState extends OrderDetailsViewModel {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: Colors.black,
+        statusBarColor: samaOfficeColor,
         /* set Status bar color in Android devices. */
         statusBarIconBrightness: Brightness.dark,
         /* set Status bar icons color in Android devices.*/
@@ -41,7 +42,7 @@ class _OrderDetailsState extends OrderDetailsViewModel {
             Column(
               children: [
                 Container(
-                  color: yellowColor,
+                  color: samaOfficeColor,
                   width: size.width,
                   height: 100,
                   child: Align(
@@ -51,14 +52,32 @@ class _OrderDetailsState extends OrderDetailsViewModel {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Icon(
-                              Icons.arrow_back_ios,
-                              size: 20,
-                              color: Colors.black,
+                          InkWell(onTap: () {
+                            Navigator.pop(context);
+
+                          },
+                            child: Row(
+                              children: [
+                                SizedBox(width: 10,
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Icon(
+                                      Icons.arrow_back_ios,
+                                      size: 20,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+
+                                const SizedBox(width: 10,),
+
+                                SvgPicture.asset(
+                                  "assets/images/logo.svg",height: 20,width: 20,
+
+                                ),
+                              ],
                             ),
                           ),
 
@@ -70,7 +89,7 @@ class _OrderDetailsState extends OrderDetailsViewModel {
                                 fontWeight: FontWeight.w500),
                           ),
                           const SizedBox(
-                            width: 50,
+                            width: 80,
                           ),
 
                         ],
@@ -214,7 +233,7 @@ class _OrderDetailsState extends OrderDetailsViewModel {
                                   child: Text(
                                     tr("TheApplicant'sInformation"),
                                     style: GoogleFonts.tajawal(
-                                      fontSize: 14,
+                                      fontSize:  lang=="ar"?13:11,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -239,7 +258,7 @@ class _OrderDetailsState extends OrderDetailsViewModel {
                                   child: Text(
                                     tr("Services"),
                                     style: GoogleFonts.tajawal(
-                                      fontSize: 14,
+                                      fontSize: 13,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -260,6 +279,7 @@ class _OrderDetailsState extends OrderDetailsViewModel {
                                     borderRadius: BorderRadius.circular(15)),
                                 child: Column(
                                   children: [
+                                    bookingsModelDetails.status != "pending"?
                                     Container(
                                       padding: const EdgeInsets.all(10.0),
                                       margin: const EdgeInsets.all(10),
@@ -481,7 +501,8 @@ class _OrderDetailsState extends OrderDetailsViewModel {
 
                                         ],
                                       ),
-                                    ),
+                                    )
+                                    :const SizedBox.shrink() ,
                                     const SizedBox(height: 50,),
 
                                     Container(
@@ -571,8 +592,8 @@ class _OrderDetailsState extends OrderDetailsViewModel {
                                                         borderRadius:
                                                         BorderRadius.circular(10.0),
                                                         side: const BorderSide(
-                                                            color: samaColor)),
-                                                    backgroundColor: samaColor),
+                                                            color: samaOfficeColor)),
+                                                    backgroundColor: samaOfficeColor),
                                                 onPressed: () {
                                                   changeStatusReservationsApi();
                                                 },

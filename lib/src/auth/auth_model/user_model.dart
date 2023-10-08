@@ -83,6 +83,17 @@ class Office {
   String? lng;
   String? rate;
   int? distance;
+  String? subscription_start_date;
+  String? subscription_end_date;
+  String? start_work_at;
+  String? end_work_at;
+  String? country_name;
+  String? city_name;
+  String? name_en;
+  String? description_en;
+  String? address_en;
+  String? working_hours_en;
+
 
   Office(
       {this.id,
@@ -100,7 +111,19 @@ class Office {
         this.lat,
         this.lng,
         this.rate,
-        this.distance});
+        this.distance,
+      this.subscription_start_date,
+        this.subscription_end_date,
+        this.start_work_at,
+        this.end_work_at,
+        this.country_name,
+        this.city_name,
+        this .name_en,
+        this.description_en,
+        this.address_en,
+        this.working_hours_en,
+
+      });
 
   Office.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -121,6 +144,17 @@ class Office {
     lng = json['lng'];
     rate = json['rate'];
     distance = json['distance'];
+    subscription_start_date = json['subscription_start_date'];
+    subscription_end_date = json['subscription_end_date'];
+    start_work_at = json['start_work_at'];
+    end_work_at = json['end_work_at'];
+    country_name = json['country_name'];
+    city_name = json['city_name'];
+    name_en= json['name_en'];
+    description_en= json['description_en'];
+    address_en= json['address_en'];
+    working_hours_en= json['working_hours_en'];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -143,6 +177,16 @@ class Office {
     data['lng'] = this.lng;
     data['rate'] = this.rate;
     data['distance'] = this.distance;
+    data['subscription_start_date'] = this.subscription_start_date;
+    data['subscription_end_date'] = this.subscription_end_date;
+    data['start_work_at'] = this.start_work_at;
+    data['end_work_at'] = this.end_work_at;
+    data['country_name'] = this.country_name;
+    data['city_name'] = this.city_name;
+    data['name_en'] = this.name_en;
+    data['description_en'] = this.description_en;
+    data['address_en'] = this.address_en;
+    data['working_hours_en'] = this.working_hours_en;
     return data;
   }
 }

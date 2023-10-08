@@ -28,7 +28,7 @@ class _LoginPageState extends LoginViewModel {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: yellowColor,
+        statusBarColor: samaOfficeColor,
         /* set Status bar color in Android devices. */
         statusBarIconBrightness: Brightness.dark,
         /* set Status bar icons color in Android devices.*/
@@ -44,23 +44,23 @@ class _LoginPageState extends LoginViewModel {
               children: [
                 Container(
                   height: size.height / 3.5,
-                  color: yellowColor,
+                  color: Colors.white,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Platform.isIOS
                           ? const SizedBox(
-                        height: 60,
+                        height: 120,
                       )
                           : const SizedBox(
-                        height: 40,
+                        height: 100,
                       ),
 
                       Center(
                         child: SvgPicture.asset(
-                          'assets/images/login_logo.svg',
-                          width: size.width * .35,
-                          color: samaColor,
+                          'assets/images/logo.svg',
+                          width: size.width * .45,
+
                         ),
                       ),
                       const SizedBox(
@@ -274,8 +274,8 @@ class _LoginPageState extends LoginViewModel {
                                           borderRadius:
                                           BorderRadius.circular(10.0),
                                           side: const BorderSide(
-                                              color: yellowColor)),
-                                      backgroundColor: yellowColor),
+                                              color: samaOfficeColor)),
+                                      backgroundColor: samaOfficeColor),
                                   onPressed: () {
                                     checkLogin();
                                   },
@@ -284,7 +284,7 @@ class _LoginPageState extends LoginViewModel {
                                     style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
-                                        color:Colors.black),
+                                        color:Colors.white),
                                   )),
                               const SizedBox(
                                 height: 20,

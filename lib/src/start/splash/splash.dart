@@ -60,7 +60,7 @@ class SplashViewState extends State<SplashView> with StorageHelper {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-            statusBarColor: samaColor,
+            statusBarColor: samaOfficeColor,
             /* set Status bar color in Android devices. */
             statusBarIconBrightness: Brightness.light,
             /* set Status bar icons color in Android devices.*/
@@ -74,12 +74,12 @@ class SplashViewState extends State<SplashView> with StorageHelper {
         children: [
           Center(
               child: SvgPicture.asset(
-            'assets/images/login_logo.svg',
+            'assets/images/logo.svg',
             width: size.width * .5,
           )),
           Positioned(
             bottom: 50,
-              child: Text(tr("tourismOffices"),style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w500),))
+              child: Text(tr("tourismOffices"),style: const TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w500),))
         ],
       ),
     );
@@ -226,10 +226,10 @@ class SplashViewState extends State<SplashView> with StorageHelper {
                 ),
                 TextButton(
                     style: TextButton.styleFrom(
-                        backgroundColor: samaColor,
+                        backgroundColor: samaOfficeColor,
                         fixedSize: const Size(200, 50),
                         shape: RoundedRectangleBorder(
-                          side: const BorderSide(color: samaColor),
+                          side: const BorderSide(color: samaOfficeColor),
                           borderRadius: BorderRadius.circular(15),
                         )),
                     onPressed: () async {

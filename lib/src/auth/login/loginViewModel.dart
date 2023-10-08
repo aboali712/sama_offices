@@ -87,7 +87,7 @@ abstract class LoginViewModel extends State<LoginPage> with StorageHelper {
         if (response.status == 201) {
           VerifyCodeViewModel.phone = ph;
           VerifyCodeViewModel.pageType = "0";
-          SamaOfficesApp.navKey.currentState!.pushReplacement(
+          SamaOfficesApp.navKey.currentState!.push(
             MaterialPageRoute(builder: (context) => const VrifyCode()),
           );
         }

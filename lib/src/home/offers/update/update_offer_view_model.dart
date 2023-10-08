@@ -14,8 +14,10 @@ import '../../../../core/widget/calender_dialog.dart';
 import '../../../../main.dart';
 import '../../../auth/signup/all_filter/cities_model.dart';
 import '../../../auth/signup/all_filter/city_response.dart';
+import '../../../auth/signup/all_filter/country_model.dart';
 import '../../../auth/signup/all_filter/filter_model.dart';
 import '../../../auth/signup/all_filter/filter_response.dart';
+import '../../home_core.dart';
 import '../all/models/offer_model.dart';
 
 abstract class UpdateOfferPageViewModel extends State<UpdateOfferPage>
@@ -56,6 +58,27 @@ abstract class UpdateOfferPageViewModel extends State<UpdateOfferPage>
   List<XFile>? images;
   var detailsAr = "";
   var detailsEn = "";
+
+  List<CountryModel> selectedCountry =[];
+  List<String>? selectedCountryId ;
+  List<CityModel> selectedCites =[];
+  List<String>? selectedCitesId;
+
+
+  int? type;
+  String offerType="";
+  TextEditingController numOfPersonControl=TextEditingController();
+  bool isNumOfPerson=false;
+  String numPerson="";
+
+  TextEditingController numOfDaysControl=TextEditingController();
+  bool isNumOfDays=false;
+  String numDays="";
+
+
+  TextEditingController numOfNightsControl=TextEditingController();
+  bool isNumOfNights=false;
+  String numNights="";
 
   @override
   void initState() {
@@ -99,17 +122,18 @@ abstract class UpdateOfferPageViewModel extends State<UpdateOfferPage>
     if (rs.status == 200) {
       setState(() {
         filterModel = rs.data;
-        setData();
+      setData();
       });
+
     }
   }
 
-  void setData() {
+  Future<void> setData() async {
     setState(() {
       isLoading = true;
     });
 
-    setState(() async {
+
       titleArController.text=offerModel!.nameAr!;
       titleEnController.text=offerModel!.nameEn!;
       detailsAr=offerModel!.descriptionAr!;
@@ -121,26 +145,46 @@ abstract class UpdateOfferPageViewModel extends State<UpdateOfferPage>
 
       priceAfterController.text=offerModel!.priceAfter!.toString();
 
-      selectedOfficeBranch = filterModel!.countries!
-          .firstWhere((element) => element.id == offerModel!.countryId)
-          .name;
+
+      selectedCountryId=offerModel!.countries_list!.toList();
+      selectedCitesId=offerModel!.cities_list!.toList();
+      print(selectedCitesId);
+      print(selectedCountryId);
+
+
+      // selectedOfficeBranch = filterModel!.countries!
+      //     .firstWhere((element) => element.id == offerModel!.countryId)
+      //     .name;
       countryId = offerModel!.countryId.toString();
       selectedCityBranchID=offerModel!.cityId.toString();
-      Map<String, String> mp = {};
-      mp["country_id"] = countryId;
+      // Map<String, String> mp = {};
+      // mp["country_id"] = countryId;
 
-      final response = await dio.get("v1/cities", queryParameters: mp);
-      setState(() {
-        isLoading = false;
-      });
-      var rs = CitiesResponse(response.data!);
-      if (rs.status == 200) {
+      // final response = await dio.get("v1/cities", queryParameters: mp);
+      // setState(() {
+      //   isLoading = false;
+      // });
+      // var rs = CitiesResponse(response.data!);
+      // if (rs.status == 200) {
+      //   setState(() {
+      //     cites = rs.data!;
+      //     selectedCityBranch=cites .firstWhere((element) => element.id == offerModel!.cityId)
+      //         .name;
+      //   });
+      // }
+
+    offerType=offerModel!.offer_type!;
+      if(offerType=="individual"){
         setState(() {
-          cites = rs.data!;
-          selectedCityBranch=cites .firstWhere((element) => element.id == offerModel!.cityId)
-              .name;
+          type=0;
         });
-      }
+      }else{setState(() {
+        type=1;
+        numOfPersonControl.text=offerModel!.num_of_persons.toString();
+      });}
+    numOfDaysControl.text=offerModel!.numOfDays.toString();
+    numOfNightsControl.text=offerModel!.num_of_nights.toString();
+
 
       imageOffice=null;
       images=null;
@@ -150,22 +194,18 @@ abstract class UpdateOfferPageViewModel extends State<UpdateOfferPage>
       startSelectedDate = DateFormat('yyyy-MM-dd', "en").format(DateFormat('yyyy-MM-dd', "en").parse(offerModel!.startDate!));
 
       endSelectedDate = DateFormat('yyyy-MM-dd', "en").format(DateFormat('yyyy-MM-dd', "en").parse(offerModel!.endDate!));
+    setState(() {
+      isLoading = false;
     });
   }
 
   Future<void> getCityDataApi() async {
-    setState(() {
-      isLoading = true;
-    });
     Map<String, String> mp = {};
-    mp["country_id"] = countryId;
+    selectedCountryId!.asMap().forEach((index, value) =>  mp["countries[$index]"] = value);
 
-    final response = await dio.get("v1/cities", queryParameters: mp);
+    final response = await dio.get("v1/citiesByCountries",queryParameters: mp );
 
     var rs = CitiesResponse(response.data!);
-    setState(() {
-      isLoading = false;
-    });
     if (rs.status == 200) {
       setState(() {
         cites = rs.data!;
@@ -208,6 +248,13 @@ abstract class UpdateOfferPageViewModel extends State<UpdateOfferPage>
       mp["start_date"] = startSelectedDate;
       mp["end_date"] = endSelectedDate;
 
+      selectedCountryId!.asMap().forEach((index, value) =>  mp["countries[$index]"] = value);
+      selectedCitesId!.asMap().forEach((index, value) =>  mp["cities[$index]"] = value);
+
+      mp["offer_type"]=offerType;
+      mp["num_of_persons"]=offerType=="group"? numOfPersonControl.value.text: 1;
+      mp["num_of_days"]=numOfDaysControl.value.text;
+      mp["num_of_nights"]=numOfNightsControl.value.text;
 
 
 
@@ -231,7 +278,12 @@ abstract class UpdateOfferPageViewModel extends State<UpdateOfferPage>
       if (rs.status == 200) {
         setState(() {
           toastAppSuccess(rs.msg!, context);
-          SamaOfficesApp.navKey.currentState!.pop(context);
+          // SamaOfficesApp.navKey.currentState!.pop(context);
+
+           HomeCorePage.index=2;
+          SamaOfficesApp.navKey.currentState!.pushReplacement(
+            MaterialPageRoute(builder: (context) =>  HomeCore()),
+          );
         });
       } else {
         toastApp(rs.msg!, context);

@@ -15,7 +15,7 @@ abstract class ReservationsOffersViewModel extends State<ReservationOffersPage> 
   @override
   void initState() {
     getReservationsApi();
-    HomeCore.starCountRef!.child("count_offers").set("0");
+    // HomeCore.starCountRef!.child("count_offers").set("0");
 
     super.initState();
   }

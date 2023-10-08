@@ -46,7 +46,7 @@ class _SignUpPageState extends SignUpViewModel {
         child: Stack(
           children: [
             Container(
-              color: yellowColor,
+              color: samaOfficeColor,
               height: 200,
               padding: const EdgeInsets.all(15.0),
               child: Column(
@@ -65,7 +65,7 @@ class _SignUpPageState extends SignUpViewModel {
                     },
                     child: const Icon(
                       Icons.arrow_back,
-                      color: Colors.black,
+                      color: Colors.white,
                       size: 20,
                     ),
                   ),
@@ -78,7 +78,7 @@ class _SignUpPageState extends SignUpViewModel {
                           Text(
                             tr("Create a new account"),
                             style: GoogleFonts.tajawal(
-                                color: Colors.black,
+                                color: Colors.white,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16),
                             textAlign: TextAlign.center,
@@ -89,7 +89,7 @@ class _SignUpPageState extends SignUpViewModel {
                           Text(
                             tr("Please enter your information"),
                             style: GoogleFonts.tajawal(
-                                color: Colors.black54,
+                                color: Colors.white70,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 14),
                             textAlign: TextAlign.center,
@@ -99,7 +99,7 @@ class _SignUpPageState extends SignUpViewModel {
                       SvgPicture.asset(
                         'assets/images/login_logo.svg',
                         width: 90,
-                        color: samaColor,
+                        color: Colors.white,
                         height: 90,
                       ),
                     ],
@@ -152,7 +152,7 @@ class _SignUpPageState extends SignUpViewModel {
                                       ))
                                   : ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: yellowColor,
+                                        backgroundColor: samaOfficeColor,
                                           fixedSize: Size(size.width, 50)),
                                       onPressed: () async {
                                      if(   checkValidationRegister()){
@@ -161,7 +161,7 @@ class _SignUpPageState extends SignUpViewModel {
                                       },
                                       child: Text(
                                         tr("Register"),
-                                        style: GoogleFonts.tajawal(fontSize: 15,color: Colors.black),
+                                        style: GoogleFonts.tajawal(fontSize: 15,color: Colors.white),
                                       )),
                               type: StepperType.horizontal,
                               currentStep: currentStep,
@@ -828,9 +828,164 @@ class _SignUpPageState extends SignUpViewModel {
             const SizedBox(
               height: 20,
             ),
+            Row(mainAxisAlignment:  MainAxisAlignment.spaceBetween,
+              children: [
+                Text(tr("OfficeOpeningTimes"),style: GoogleFonts.tajawal(fontSize: 15,),),
+                const SizedBox(width: 20,),
+                SizedBox(height: 45,width: 120,
+                  child: TextField(
+                    controller: timeInControl,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 14,color: Colors.black),
+                    decoration: InputDecoration(
+
+                        filled: true,
+                        fillColor: Colors.white,
+
+                        disabledBorder: OutlineInputBorder(
+                            borderSide:  BorderSide(color: Colors.grey.shade400,width: .4),
+                            borderRadius: BorderRadius.circular(10)),
+                        enabledBorder:OutlineInputBorder(
+                            borderSide:  BorderSide(color: Colors.grey.shade400,width: .4),
+                            borderRadius: BorderRadius.circular(10)) ,
+                        border: OutlineInputBorder(
+                            borderSide:  BorderSide(color: Colors.grey.shade300,width: .4),
+                            borderRadius: BorderRadius.circular(10)),
+
+                        focusedErrorBorder:OutlineInputBorder(
+                            borderSide:  BorderSide(color: Colors.grey.shade300,width: .4),
+                            borderRadius: BorderRadius.circular(10)),
+                        errorBorder: OutlineInputBorder(
+                            borderSide:  BorderSide(color: Colors.grey.shade300,width: .4),
+                            borderRadius: BorderRadius.circular(10))
+
+                      // icon: const Icon(Icons.alarm_add_outlined),
+                      // labelText: "Enter Time"
+                    ),
+                    readOnly: true,
+
+                    onTap: () async {
+                      TimeOfDay? pickedTime = await showTimePicker(
+
+
+                        initialTime: TimeOfDay.now(),
+                        context: context,
+                      );
+
+                      if (pickedTime != null) {
+                        print(pickedTime.format(context));
+                        print(pickedTime.format(context));
+                        String formattedTime = '${pickedTime.hour.toString().padLeft(2, '0')}:${pickedTime.minute.toString().padLeft(2, '0')}';
+                        print("${formattedTime}" );
+
+                        setState(() {
+                          timeInControl.text = formattedTime;
+                          print(timeInControl.text);
+
+
+                        });
+
+                        if(timeInControl.text!=""|| timeOutControl.text!=""){
+                          setState(() {
+                            hourTimeControl.text=
+                "${tr("from")} ${timeInControl.text} ${tr("A.M")} ${tr("to")} ${timeOutControl.text} ${tr("P.M")}" ;
+                          });
+                        }
+
+                      } else {
+                        print("Time is not selected");
+                      }
+                    },
+                  ),
+                ),
+
+              ],
+            ),
+            const SizedBox(height: 10,),
+
+            Row(mainAxisAlignment:  MainAxisAlignment.spaceBetween,
+              children: [
+                Text(tr("OfficeClosingTimes"),style: GoogleFonts.tajawal(fontSize: 15,),),
+                const SizedBox(width: 20,),
+                SizedBox(height: 45,width: 120,
+                  child: TextField(
+                    controller: timeOutControl,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 14,color: Colors.black),
+                    decoration: InputDecoration(
+
+                        filled: true,
+                        fillColor: Colors.white,
+
+                        disabledBorder: OutlineInputBorder(
+                            borderSide:  BorderSide(color: Colors.grey.shade400,width: .4),
+                            borderRadius: BorderRadius.circular(10)),
+                        enabledBorder:OutlineInputBorder(
+                            borderSide:  BorderSide(color: Colors.grey.shade400,width: .4),
+                            borderRadius: BorderRadius.circular(10)) ,
+                        border: OutlineInputBorder(
+                            borderSide:  BorderSide(color: Colors.grey.shade300,width: .4),
+                            borderRadius: BorderRadius.circular(10)),
+
+                        focusedErrorBorder:OutlineInputBorder(
+                            borderSide:  BorderSide(color: Colors.grey.shade300,width: .4),
+                            borderRadius: BorderRadius.circular(10)),
+                        errorBorder: OutlineInputBorder(
+                            borderSide:  BorderSide(color: Colors.grey.shade300,width: .4),
+                            borderRadius: BorderRadius.circular(10))
+
+                      // icon: const Icon(Icons.alarm_add_outlined),
+                      // labelText: "Enter Time"
+                    ),
+                    readOnly: true,
+
+                    onTap: () async {
+                      TimeOfDay? pickedTime = await showTimePicker(
+
+
+                        initialTime: TimeOfDay.now(),
+                        context: context,
+                      );
+
+                      if (pickedTime != null) {
+                        print(pickedTime.format(context));
+                        print(pickedTime.format(context));
+                        String formattedTime = '${pickedTime.hour.toString().padLeft(2, '0')}:${pickedTime.minute.toString().padLeft(2, '0')}';
+                        print("${formattedTime}" );
+
+                        setState(() {
+                          timeOutControl.text = formattedTime;
+                          print(timeOutControl.text);
+                        });
+
+                        if(timeInControl.text!=""|| timeOutControl.text!=""){
+                          setState(() {
+                            hourTimeControl.text=
+             "${tr("from")} ${timeInControl.text} ${tr("A.M")} ${tr("to")} ${timeOutControl.text} ${tr("P.M")}" ;
+                          });
+                        }
+
+
+
+                      } else {
+                        print("Time is not selected");
+                      }
+                    },
+                  ),
+                ),
+
+              ],
+            ),
+
+            const SizedBox(
+              height: 20,
+            ),
+
             TextFormField(
+              controller: hourTimeControl,
+              readOnly: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              style: const TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 14,),
               decoration: InputDecoration(
                 hintText: tr("WorkingHours"),
                 hintStyle: GoogleFonts.tajawal(
@@ -903,6 +1058,17 @@ class _SignUpPageState extends SignUpViewModel {
               cursorColor: Colors.black,
               keyboardType: TextInputType.name,
             ),
+            const SizedBox(
+              height: 20,
+            ),
+
+
+
+
+
+
+
+
             const SizedBox(
               height: 20,
             ),

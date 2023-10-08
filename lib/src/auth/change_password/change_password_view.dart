@@ -22,7 +22,7 @@ class _ChangePasswordState extends ChangePasswordViewModel {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-        statusBarColor: samaColor,
+        statusBarColor: samaOfficeColor,
         /* set Status bar color in Android devices. */
         statusBarIconBrightness: Brightness.light,
         /* set Status bar icons color in Android devices.*/
@@ -37,7 +37,7 @@ class _ChangePasswordState extends ChangePasswordViewModel {
           Container(
             width: size.width,
             height: size.height / 3,
-            color: yellowColor,
+            color: samaOfficeColor,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
@@ -51,7 +51,7 @@ class _ChangePasswordState extends ChangePasswordViewModel {
                   },
                     child: const Icon(
                       Icons.arrow_back,
-                      color: Colors.black,
+                      color: Colors.white,
                       size: 20,
                     ),
                   ),
@@ -60,7 +60,7 @@ class _ChangePasswordState extends ChangePasswordViewModel {
                   Text(
                     tr("ResetYourPassword"),
                     style: GoogleFonts.tajawal(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.w500,
                         fontSize: 18),
                     textAlign: TextAlign.center,
@@ -71,7 +71,7 @@ class _ChangePasswordState extends ChangePasswordViewModel {
                   Text(
                     tr("EnterNewPassword"),
                     style: GoogleFonts.tajawal(
-                        color: Colors.black54,
+                        color: Colors.white70,
                         fontWeight: FontWeight.w500,
                         fontSize: 15),
                     textAlign: TextAlign.start,
@@ -98,7 +98,7 @@ class _ChangePasswordState extends ChangePasswordViewModel {
                           child: SvgPicture.asset(
                             'assets/images/login_logo.svg',
                             width: 100,
-                            height: 100,color: samaColor,
+                            height: 100,color: samaOfficeColor,
                           ),
                         ),
                         const SizedBox(height: 30,),
@@ -321,8 +321,8 @@ class _ChangePasswordState extends ChangePasswordViewModel {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0),
                                     side: const BorderSide(
-                                        color: Color(0xFFFFBF18))),
-                                backgroundColor: const Color(0xFFFFBF18)),
+                                        color: samaOfficeColor)),
+                                backgroundColor: samaOfficeColor),
                             onPressed: () {
                               changePassword();
                             },
@@ -331,7 +331,7 @@ class _ChangePasswordState extends ChangePasswordViewModel {
                               style: GoogleFonts.tajawal(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                                  color: Colors.white),
                             )),
 
                       ] ),
