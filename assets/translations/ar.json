@@ -287,7 +287,6 @@
   "payment": "الدفع",
   "renewal": "تجديد",
   "NumberOfMonths": "عدد الشهور",
-  "Price": "السعر",
   "DearCustomer,ThereAre5DaysLeftUntilTheSubscriptionEnds": "عميلنا العزيز باقى 5 أيام على أنتهاء الأشتراك",
   "DearCustomer,ThereAre4DaysLeftUntilTheSubscriptionEnds": "عميلنا العزيز باقى 4 أيام على أنتهاء الأشتراك",
   "DearCustomer,ThereAre3DaysLeftUntilTheSubscriptionEnds": "عميلنا العزيز باقى 3 أيام على أنتهاء الأشتراك",
@@ -297,5 +296,6 @@
   "OrderVisa1": " تصفح  باكدجات VIP واستمتع بعروض حصرية وأسعار خاصة.",
   "GotOhome": "الذهاب الي الرئيسية",
   "ThankYou": "شكراً لك",
-  "Subscription": "تم الاشتراك بنجاح"
+  "month": "شهر"
+
 }

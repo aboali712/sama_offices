@@ -103,10 +103,10 @@ class _SubscriptionPageState extends SubscriptionViewModelPage {
             filterModel != null?
 
             GridView.count(padding: EdgeInsets.zero,
-                childAspectRatio: 1.1,
+                childAspectRatio: 1.5,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
-                crossAxisCount: 3,
+                crossAxisCount: 2,
                 physics:
                 const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -132,7 +132,7 @@ class _SubscriptionPageState extends SubscriptionViewModelPage {
                           BorderRadius
                               .circular(
                               15)),
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
 
                           const SizedBox(height: 10,),
@@ -140,28 +140,38 @@ class _SubscriptionPageState extends SubscriptionViewModelPage {
                           Text(e.name!,style: GoogleFonts.tajawal(fontSize: 15,fontWeight: FontWeight.w500,
                               color: typeSelect==e.name?  Colors.white :samaOfficeColor
                           ),),
+                          const SizedBox(height: 10,),
 
-                          Row(
+                          Row(mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("${tr("Price")} :",style: GoogleFonts.tajawal(fontSize: 14,fontWeight: FontWeight.w500,
+                              Text("${tr("Price")} : ",style: GoogleFonts.tajawal(fontSize: 14,fontWeight: FontWeight.w500,
                                   color: typeSelect==e.name?  Colors.white :samaOfficeColor
                               ),),
 
                               Text(e.price!,style: GoogleFonts.tajawal(fontSize: 15,fontWeight: FontWeight.w500,
                                   color: typeSelect==e.name?  Colors.white :samaOfficeColor
                               ),),
+                              Text(" ${tr("sar")}",style: GoogleFonts.tajawal(fontSize: 14,fontWeight: FontWeight.w500,
+                                  color: typeSelect==e.name?  Colors.white :samaOfficeColor
+                              ),),
+
                             ],
                           ),
 
-                          Row(
+                          Row(mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("${tr("NumberOfMonths")} :",style: GoogleFonts.tajawal(fontSize: 10,fontWeight: FontWeight.w500,
+                              Text("${tr("NumberOfMonths")} : ",style: GoogleFonts.tajawal(fontSize: 12,fontWeight: FontWeight.w500,
                                   color: typeSelect==e.name?  Colors.white :samaOfficeColor
                               ),),
 
                               Text(e.numOfMonths.toString(),style: GoogleFonts.tajawal(fontSize: 15,fontWeight: FontWeight.w500,
                                   color: typeSelect==e.name?  Colors.white :samaOfficeColor
                               ),),
+
+                              Text(" ${tr("month")}",style: GoogleFonts.tajawal(fontSize: 14,fontWeight: FontWeight.w500,
+                                  color: typeSelect==e.name?  Colors.white :samaOfficeColor
+                              ),),
+
                             ],
                           ),
 
@@ -171,7 +181,7 @@ class _SubscriptionPageState extends SubscriptionViewModelPage {
                     ),
                   );
                 }).toList()
-                    : [] //don't forget to to add .toList() at last of map
+                    : []
             )
 
                 :  SizedBox(height: size.height/3,
@@ -195,10 +205,11 @@ class _SubscriptionPageState extends SubscriptionViewModelPage {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                     backgroundColor: samaOfficeColor),
-                onPressed:
+                onPressed:() async {
+                  if(await check()){
+                    pay();
+                  }
 
-                    () {
-                      pay();
 
                 },
                 child: Text(

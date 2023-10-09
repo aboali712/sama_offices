@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sama_offices/src/home/is_office_subscribe_expired/subscribtion_page/subscribtion_view_page.dart';
@@ -43,6 +44,17 @@ abstract class SubscriptionViewModelPage extends State<SubscriptionPage>{
       });
     }
 
+  }
+
+
+
+   bool check(){
+
+    if(typeSelectId==""){
+      toastApp(tr("ChooseTheSubscriptionPlan"), context);
+    return false;
+    }
+    return true;
   }
 
 

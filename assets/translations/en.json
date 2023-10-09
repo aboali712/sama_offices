@@ -287,7 +287,6 @@
   "payment": "payment",
   "renewal": "Re new",
   "NumberOfMonths": "Number of months",
-  "Price": "Price",
   "DearCustomer,ThereAre5DaysLeftUntilTheSubscriptionEnds": "Dear customer, there are 5 days left until the subscription ends",
   "DearCustomer,ThereAre4DaysLeftUntilTheSubscriptionEnds": "Dear customer, there are 4 days left until the subscription ends",
   "DearCustomer,ThereAre3DaysLeftUntilTheSubscriptionEnds": "Dear customer, there are 3 days left until the subscription ends",
@@ -296,5 +295,7 @@
   "DearCustomer,TodayTheSubscriptionEnds": "Dear customer, today the subscription ends",
   "OrderVisa1": "Explore  our VIP Offers and enjoy exclusive offers at special prices.",
   "GotOhome": "Go To Home",
-  "Subscription": "Subscription has been successfully"
+  "month": "Month"
+
+
 }

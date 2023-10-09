@@ -41,7 +41,7 @@ abstract class ReservationsViewModel extends State<ReservationPage> {
   @override
   void initState() {
     getProfileDate().then((value) => {
-      valEnd = DateTime.parse(profileModel!.office!.subscription_end_date.toString()) ,
+      valEnd = DateTime.parse("2023-10-09") ,
        print(profileModel!.office!.subscription_end_date.toString()),
       minus5Days = valEnd!.subtract(const Duration(days: 5)),
 
