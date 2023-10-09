@@ -109,7 +109,7 @@ class _CheckoutPreviewViewState extends State<CheckoutView>
                 height: 5,
               ),
               TextWidget(
-                  title: "Subscription".tr(),
+                  title: "Subscriptions".tr(),
                   fontSize: 17,
                   fontWeight: FontWeight.w500,
                   color: darkBlue,
