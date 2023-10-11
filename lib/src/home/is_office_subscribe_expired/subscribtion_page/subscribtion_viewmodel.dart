@@ -10,6 +10,7 @@ import '../../../../core/network/network_service.dart';
 import '../../../../core/utils/helper_manager.dart';
 import '../../../auth/signup/all_filter/filter_model.dart';
 import '../../../auth/signup/all_filter/filter_response.dart';
+import '../../../auth/signup/all_filter/paln_model.dart';
 import '../../payment/model/payment_response.dart';
 import '../../payment/payment_view.dart';
 
@@ -18,6 +19,7 @@ abstract class SubscriptionViewModelPage extends State<SubscriptionPage>{
 
   FilterModel? filterModel;
   String? selectedSubscriptionPlan;
+  List<PlansModel>? plansModel;
 
   String typeSelect="";
   String typeSelectId="";
@@ -40,6 +42,7 @@ abstract class SubscriptionViewModelPage extends State<SubscriptionPage>{
     if (rs.status == 200) {
       setState(() {
         filterModel = rs.data;
+        plansModel=filterModel!.plans!.where((element) => element.price!="0") .toList();
 
       });
     }

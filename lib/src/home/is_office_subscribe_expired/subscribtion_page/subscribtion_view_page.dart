@@ -111,7 +111,7 @@ class _SubscriptionPageState extends SubscriptionViewModelPage {
                 const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 children: filterModel != null
-                    ? filterModel!.plans!.map((e) {
+                    ? plansModel!.map((e) {
                   return InkWell(
                     onTap: () {
                       setState(() {
@@ -151,7 +151,7 @@ class _SubscriptionPageState extends SubscriptionViewModelPage {
                               Text(e.price!,style: GoogleFonts.tajawal(fontSize: 15,fontWeight: FontWeight.w500,
                                   color: typeSelect==e.name?  Colors.white :samaOfficeColor
                               ),),
-                              Text(" ${tr("sar")}",style: GoogleFonts.tajawal(fontSize: 14,fontWeight: FontWeight.w500,
+                              Text(" ${tr("Sar")}",style: GoogleFonts.tajawal(fontSize: 13,fontWeight: FontWeight.w500,
                                   color: typeSelect==e.name?  Colors.white :samaOfficeColor
                               ),),
 
@@ -168,7 +168,7 @@ class _SubscriptionPageState extends SubscriptionViewModelPage {
                                   color: typeSelect==e.name?  Colors.white :samaOfficeColor
                               ),),
 
-                              Text(" ${tr("month")}",style: GoogleFonts.tajawal(fontSize: 14,fontWeight: FontWeight.w500,
+                              Text(" ${tr("month")}",style: GoogleFonts.tajawal(fontSize: 13,fontWeight: FontWeight.w500,
                                   color: typeSelect==e.name?  Colors.white :samaOfficeColor
                               ),),
 
