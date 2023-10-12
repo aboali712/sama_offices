@@ -45,7 +45,11 @@ class _OfficeSubscribeViewState extends OfficeSubscribeViewModel {
 
         Row(
           children: [
-            ReservationsViewModel.valDate!=false?
+            ReservationsViewModel.nullValue==true?
+            SvgPicture.asset(
+              "assets/images/logo.svg",height: 20,width: 20,
+            )
+            :ReservationsViewModel.valDate!=false  ?
 
             InkWell(onTap: () {
               Navigator.pop(context);
@@ -66,9 +70,11 @@ class _OfficeSubscribeViewState extends OfficeSubscribeViewModel {
                 ],
               ),
             )
-         :    SvgPicture.asset(
+
+            : SvgPicture.asset(
              "assets/images/logo.svg",height: 20,width: 20,
          ),
+
 
             const SizedBox(width: 20,)
 

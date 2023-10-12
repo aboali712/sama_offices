@@ -12,6 +12,7 @@ import 'package:sama_offices/src/home/resevition/reservation_view.dart';
 import '../../../main.dart';
 import '../../auth/auth_model/auth_response.dart';
 import '../is_office_subscribe_expired/ofice_subscribe_expired_view.dart';
+import '../is_office_subscribe_expired/subscribtion_page/subscribtion_view_page.dart';
 import 'model/bookingreponse_reponse.dart';
 
 abstract class ReservationsViewModel extends State<ReservationPage> {
@@ -37,41 +38,44 @@ abstract class ReservationsViewModel extends State<ReservationPage> {
   DateTime? date2;
 
   static int? difference;
+  static bool? nullValue;
 
   @override
   void initState() {
     getProfileDate().then((value) => {
-      valEnd = DateTime.parse(profileModel!.office!.subscription_end_date.toString()) ,
-       print(profileModel!.office!.subscription_end_date.toString()),
-      minus5Days = valEnd!.subtract(const Duration(days: 5)),
 
 
-setState(() {
+      if(profileModel!.office!.subscription_end_date==null){
+        setState((){
+          nullValue=true;
+             }),
 
-    difference = valEnd!.difference(date).inDays ;
+        SamaOfficesApp.navKey.currentState!.pushReplacement(MaterialPageRoute(builder:
+            (context) => const OfficeSubscribeView(),))
 
-    print(difference);
+      }else{
 
-}),
-
+        valEnd = DateTime.parse(profileModel!.office!.subscription_end_date.toString()) ,
+        print(profileModel!.office!.subscription_end_date.toString()),
+        minus5Days = valEnd!.subtract(const Duration(days: 5)),
+        setState(() {
+          difference = valEnd!.difference(date).inDays ;
+          print(difference);
+        }),
         valDate = date.isBefore(valEnd!),
+        valDateMinus5Days = date.isBefore(minus5Days!),
+        print(valDateMinus5Days),
 
-      valDateMinus5Days = date.isBefore(minus5Days!),
 
-
-      print(valDateMinus5Days),
-
-      if(valDateMinus5Days==false ){
+        if(valDateMinus5Days==false ){
 
           if(pageVipExpired==0){
-
-           valDate==false?
-
-             SamaOfficesApp.navKey.currentState!.pushReplacement(MaterialPageRoute(
+            valDate==false?
+            SamaOfficesApp.navKey.currentState!.pushReplacement(MaterialPageRoute(
               builder: (context) => const OfficeSubscribeView(),))
 
-            :SamaOfficesApp.navKey.currentState!.push(MaterialPageRoute(
-             builder: (context) => const OfficeSubscribeView(),))
+                :SamaOfficesApp.navKey.currentState!.push(MaterialPageRoute(
+              builder: (context) => const OfficeSubscribeView(),))
             ,
             setState((){
               ReservationsViewModel.pageVipExpired=1;
@@ -80,7 +84,8 @@ setState(() {
           }
 
 
-      },
+        },
+      }
 
     });
 
@@ -123,6 +128,8 @@ setState(() {
       setState(() {
         profileModel = rs.data;
       });
+
+      print("${profileModel!.toJson()}444444444444444444444444444444444444444444444444444444444444444444444444444444444");
     }
   }
 
