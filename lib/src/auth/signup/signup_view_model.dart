@@ -106,6 +106,7 @@ abstract class SignUpViewModel extends State<SignUpPage> with StorageHelper{
 
 
   String tokenDevice="";
+  String planPrice="";
 
 
 
@@ -293,6 +294,12 @@ await Future.delayed(const Duration(seconds: 2));
     if(response.status==201){
       VerifyCodeViewModel.phone=ph;
       VerifyCodeViewModel.pageType="0";
+
+      if(planPrice!="0"){
+      setState(() {
+        VerifyCodeViewModel.subscriptionPage=true;
+      });
+      }
 
       toastAppSuccess(response.msg!,context);
       SamaOfficesApp.navKey.currentState!.pushReplacement(

@@ -1547,9 +1547,17 @@ class _SignUpPageState extends SignUpViewModel {
                           (element) => element.name == selectedSubscriptionPlan)
                       .id
                       .toString();
+
+                  planPrice = filterModel!.plans!
+                      .firstWhere(
+                          (element) => element.name == selectedSubscriptionPlan)
+                      .price
+                      .toString();
+
                 });
 
                 print(selectedPlanID);
+                print(planPrice);
               },
               buttonHeight: 40,
               buttonWidth: double.infinity,

@@ -12,6 +12,7 @@ import '../../../core/cash/storage.helper.dart';
 import '../../../core/network/network_service.dart';
 import '../../../core/utils/helper_manager.dart';
 import '../../home/home_core.dart';
+import '../../home/is_office_subscribe_expired/subscribtion_page/subscribtion_view_page.dart';
 import '../auth_model/auth_response.dart';
 import '../auth_model/empty_response.dart';
 import '../change_password/change_password_view.dart';
@@ -26,6 +27,7 @@ abstract class VerifyCodeViewModel extends State<VrifyCode> with StorageHelper {
   final Dio dio = NetworkService.instance.dio;
   static String phone = "";
   static String pageType = "0";
+  static bool? subscriptionPage ;
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1500 * 30;
   late CountdownTimerController controller =
@@ -76,9 +78,16 @@ abstract class VerifyCodeViewModel extends State<VrifyCode> with StorageHelper {
         await saveUser(response.data!);
         saveUserFirebase(response.data!.office!.id.toString());
 
-        SamaOfficesApp.navKey.currentState!.pushReplacement(
-          MaterialPageRoute(builder: (context) =>  HomeCore()),
-        );
+       if(VerifyCodeViewModel.subscriptionPage==true){
+         SamaOfficesApp.navKey.currentState!.pushReplacement(
+             MaterialPageRoute(builder: (context) =>  const SubscriptionPage()));
+       }else{
+         SamaOfficesApp.navKey.currentState!.pushReplacement(
+           MaterialPageRoute(builder: (context) =>  HomeCore()),
+         );
+       }
+
+
       } else {
         SamaOfficesApp.navKey.currentState!.pushReplacement(
           MaterialPageRoute(builder: (context) => const ChangePassword()),
