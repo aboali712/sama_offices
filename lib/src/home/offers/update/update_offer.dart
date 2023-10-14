@@ -62,7 +62,7 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
                           child: Icon(
                             Icons.arrow_back_ios,
                             size: 20,
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -70,7 +70,7 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
                         tr("EditOffer"),
                         style: GoogleFonts.tajawal(
                             fontSize: 15,
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(

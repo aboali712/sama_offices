@@ -59,14 +59,14 @@ class _CreateOfferPageState extends CreateOfferPageViewModel {
                         child: const Icon(
                           Icons.arrow_back_ios,
                           size: 20,
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                       Text(
                         tr("CreatePackage"),
                         style: GoogleFonts.tajawal(
                             fontSize: 15,
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(

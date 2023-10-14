@@ -97,10 +97,10 @@ class _SignUpPageState extends SignUpViewModel {
                         ],
                       ),
                       SvgPicture.asset(
-                        'assets/images/login_logo.svg',
-                        width: 90,
+                        'assets/images/logo.svg',
+                        width: 50,
                         color: Colors.white,
-                        height: 90,
+                        height: 50,
                       ),
                     ],
                   ),

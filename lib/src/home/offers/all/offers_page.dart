@@ -48,7 +48,7 @@ class _OffersPageState extends OffersPageViewModel {
                 child: Text(
                   tr("Offers"),
                   style: const TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w600),
                 ),
