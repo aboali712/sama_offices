@@ -849,6 +849,9 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: greenBlueIconColor,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5)
+                                  ),
                                   fixedSize: const Size(150, 35)),
                               onPressed: () async {
                                 imageOffice = (await picker.pickImage(
@@ -857,7 +860,7 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
                               },
                               child: Text(
                                 tr("MainImage"),
-                                style: GoogleFonts.tajawal(fontSize: 12),
+                                style: GoogleFonts.tajawal(fontSize: 12,color: Colors.white),
                               )),
                           imageOffice == null
                               ? UpdateOfferPageViewModel.offerModel!=null

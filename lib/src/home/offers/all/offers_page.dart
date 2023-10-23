@@ -73,8 +73,11 @@ class _OffersPageState extends OffersPageViewModel {
                       },
                       child: Card(
                         elevation: .5,
+                        surfaceTintColor: Colors.white,
                         child: Container(
                           width: size.width,
+                          color: Colors.white,
+
                           margin: const EdgeInsets.all(5),
                           child: Column(
                             children: [

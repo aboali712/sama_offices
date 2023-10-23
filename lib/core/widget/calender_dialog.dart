@@ -12,10 +12,14 @@ class CalenderDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Dialog(backgroundColor: Colors.white,
+    return Dialog(
+
+      backgroundColor: Colors.white,
+surfaceTintColor: Colors.white,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0)), //this right here
-      child: SizedBox(height: 520,
+      child: SizedBox(
+        height: 520,
         child: Column(
           children: [
             SizedBox(
@@ -25,39 +29,33 @@ class CalenderDialog extends StatelessWidget {
                 showNavigationArrow: true,
                 headerHeight: 55,
                 showTodayButton: false,
-
                 rangeTextStyle: const TextStyle(color: Colors.white),
                 backgroundColor: Colors.white,
                 monthCellStyle: const DateRangePickerMonthCellStyle(
                     todayTextStyle: TextStyle(color: yellowColor),
-                    specialDatesTextStyle: TextStyle(color: Colors.black)
-                ),
-
+                    specialDatesTextStyle: TextStyle(color: Colors.black)),
                 monthViewSettings: DateRangePickerMonthViewSettings(
                     viewHeaderHeight: 40,
-
-
-
-                    viewHeaderStyle: DateRangePickerViewHeaderStyle(backgroundColor: samaColor,textStyle: GoogleFonts.tajawal(fontSize: 11))
-                ),
+                    viewHeaderStyle: DateRangePickerViewHeaderStyle(
+                        backgroundColor: samaColor,
+                        textStyle: GoogleFonts.tajawal(fontSize: 11,color: Colors.white))),
                 view: DateRangePickerView.month,
-                headerStyle: DateRangePickerHeaderStyle(backgroundColor: samaColor,textStyle: GoogleFonts.tajawal(color: Colors.white)),
+                headerStyle: DateRangePickerHeaderStyle(
+                    backgroundColor: samaColor,
+                    textStyle: GoogleFonts.tajawal(color: Colors.white)),
                 selectionMode: DateRangePickerSelectionMode.range,
                 startRangeSelectionColor: samaColor,
                 endRangeSelectionColor: samaColor,
                 onSelectionChanged: onSelectionChanged,
                 rangeSelectionColor: samaColor,
                 todayHighlightColor: samaColor,
-
-
-
-
               ),
             ),
-            SizedBox(width: 200,
+            SizedBox(
+              width: 200,
               child: TextButton(
                   style: TextButton.styleFrom(
-                      fixedSize: Size(size.width-30, 45),
+                      fixedSize: Size(size.width - 30, 45),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                           side: const BorderSide(color: yellowColor)),
@@ -65,7 +63,7 @@ class CalenderDialog extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child:  Text(
+                  child: Text(
                     tr("Confirm"),
                     style: const TextStyle(
                         fontSize: 14,
@@ -73,10 +71,6 @@ class CalenderDialog extends StatelessWidget {
                         color: Colors.blueGrey),
                   )),
             ),
-
-
-
-
           ],
         ),
       ),

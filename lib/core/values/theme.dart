@@ -15,8 +15,9 @@ class AppTheme {
         dividerColor: Colors.transparent,
         appBarTheme: const AppBarTheme(
           color: Colors.white,
+          surfaceTintColor: Colors.white,
           titleTextStyle: TextStyle(color: Colors.black),
-          iconTheme: IconThemeData(color: textColor),
+          iconTheme: IconThemeData(color: Colors.white),
         ));
   }
 

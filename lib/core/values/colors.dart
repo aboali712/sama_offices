@@ -5,7 +5,7 @@ const Color yellowColor = Color(0xFFFFBF18);
 const Color green = Color(0xFF00AE9F);
 const Color profile = Color(0xFF5E2D77);
 
-const Color primaryColor = Color(0xFFd7dae0);
+const Color primaryColor = Color(0xFFFFFFFF);
 const Color orange = Color(0xFFF15E31);
 
 const Color samaColor = Color(0xFF1D405C);
