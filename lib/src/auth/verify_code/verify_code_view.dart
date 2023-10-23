@@ -105,10 +105,10 @@ class _VrifyCodeState extends VerifyCodeViewModel {
 
                       Center(
                         child: SvgPicture.asset(
-                          'assets/images/login_logo.svg',
-                          width: 100,
-                          height: 100,
-                          color:samaOfficeColor ,
+                          'assets/images/logo.svg',
+                          width: 60,
+                          height: 60,
+                          // color:samaOfficeColor ,
                         ),
                       ),
                       const SizedBox(height: 50,),

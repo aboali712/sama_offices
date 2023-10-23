@@ -59,14 +59,14 @@ class _CreateOfferPageState extends CreateOfferPageViewModel {
                         child: const Icon(
                           Icons.arrow_back_ios,
                           size: 20,
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                       Text(
                         tr("CreatePackage"),
                         style: GoogleFonts.tajawal(
                             fontSize: 15,
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
@@ -474,7 +474,7 @@ class _CreateOfferPageState extends CreateOfferPageViewModel {
 
                       MultiSelectDialogField<CountryModel>(
                         items:filterModel!=null?
-                     
+
                         filterModel!.countries!.map((e) => MultiSelectItem(e, e.name!,)).toList()
                             : []   ,
                         title: Text(tr("Countries"),style: GoogleFonts.tajawal(fontSize: 16,fontWeight: FontWeight.w500),),
@@ -501,6 +501,7 @@ class _CreateOfferPageState extends CreateOfferPageViewModel {
                         selectedItemsTextStyle:  GoogleFonts.tajawal(fontSize: 15
                             ,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9)),
                         dialogHeight: 500,
+                        itemsTextStyle: GoogleFonts.tajawal(fontSize: 15,fontWeight: FontWeight.w500),
 
                         listType: MultiSelectListType.LIST,
                         onConfirm: (values) {
@@ -547,7 +548,7 @@ class _CreateOfferPageState extends CreateOfferPageViewModel {
                         searchHint: tr("SearchForACity"),
                         searchHintStyle: GoogleFonts.tajawal(fontSize: 15
                             ,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9)),
-
+                        itemsTextStyle: GoogleFonts.tajawal(fontSize: 15,fontWeight: FontWeight.w500),
                         selectedItemsTextStyle:  GoogleFonts.tajawal(fontSize: 15
                             ,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9)),
                         dialogHeight: 500,

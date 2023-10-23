@@ -62,7 +62,7 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
                           child: Icon(
                             Icons.arrow_back_ios,
                             size: 20,
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -70,7 +70,7 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
                         tr("EditOffer"),
                         style: GoogleFonts.tajawal(
                             fontSize: 15,
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
@@ -502,7 +502,7 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
                         searchHint: tr("SearchForACountry"),
                         searchHintStyle: GoogleFonts.tajawal(fontSize: 15
                             ,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9)),
-
+                        itemsTextStyle: GoogleFonts.tajawal(fontSize: 15,fontWeight: FontWeight.w500),
                         selectedItemsTextStyle:  GoogleFonts.tajawal(fontSize: 15
                             ,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9)),
                         dialogHeight: 500,
@@ -552,7 +552,7 @@ class _CreateOfferPageState extends UpdateOfferPageViewModel {
                         searchHint: tr("SearchForACity"),
                         searchHintStyle: GoogleFonts.tajawal(fontSize: 15
                             ,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9)),
-
+                        itemsTextStyle: GoogleFonts.tajawal(fontSize: 15,fontWeight: FontWeight.w500),
                         selectedItemsTextStyle:  GoogleFonts.tajawal(fontSize: 15
                             ,fontWeight: FontWeight.w500,color:const Color(0xFF28B0A9)),
                         dialogHeight: 500,

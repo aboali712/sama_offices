@@ -102,9 +102,10 @@ class _ForgetPasswordState extends ForgetPasswordViewModel {
 
                         Center(
                           child: SvgPicture.asset(
-                            'assets/images/login_logo.svg',
-                            width: 120,
-                            height: 120,color: samaOfficeColor,
+                            'assets/images/logo.svg',
+                            width: 60,
+                            height: 60,
+                            // color: samaOfficeColor,
                           ),
                         ),
                         const SizedBox(height: 50,),
